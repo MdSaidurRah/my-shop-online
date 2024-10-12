@@ -10,7 +10,7 @@ class DuePayment extends Model
     use HasFactory;
 
     protected $table = 'due_payments';
-    public $timestamps = 'false';
-    protected $fillable = ['shopId', 'productName', 'saleQuantity', 'saleAmount',];
+    public $timestamps = false;
+    protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount'];
 
 }

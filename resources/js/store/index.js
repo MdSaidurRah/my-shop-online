@@ -1,32 +1,33 @@
 import { createStore } from "vuex";
+import axios from 'axios'
 
 export default createStore({
   state: {
-    'productSale':'',
-    'copySale':'',
-    'printSale':'',
-    'duePayment':'',
-    'collection':''
+    'productSale':'0',
+    'copySale':'0',
+    'printSale':'0',
+    'duePayment':'0',
+    'collection':'0'
   },
 
-    mutations: {
-    loadProductSale: (state, productSale) => {
-      state.productSale = productSale;
+  mutations: {
+    loadProductSale: (state, data) => {
+      state.productSale = data;
     },
-    loadCopySale: (state, copySale) => {
-      state.copySale = copySale;
-    },
-
-    loadPrintSale: (state, printSale) => {
-      state.printSale = printSale;
+    loadCopySale: (state, data) => {
+      state.copySale = data;
     },
 
-    loadDuePayment: (state, duePayment) => {
-      state.duePayment = duePayment;
+    loadPrintSale: (state, data) => {
+      state.printSale = data;
     },
 
-    loadCollection: (state, collection) => {
-      state.collection = collection;
+    loadDuePayment: (state, data) => {
+      state.duePayment = data;
+    },
+
+    loadCollection: (state, data) => {
+      state.collection = data;
     }
   },
 
@@ -48,6 +49,25 @@ export default createStore({
       return state.collection
     }
   },
+
+  actions: {
+    fetchAppData({ commit }) {
+      axios.get('/all-data')
+                .then(function (response) {
+                            if(response.data.status =='success')
+                            {
+                                commit('loadProductSale', response.data.productSale)
+                                commit('loadCopySale', response.data.copySale)
+                                commit('loadPrintSale',response.data.printSale)
+                                commit('loadDuePayment', response.data.dueAmount)
+                                commit('loadCollection',response.data.collection)
+                            }                          
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+    }
+  }
 
 
 

@@ -18,13 +18,40 @@ import Payment from '../Components/Payment.vue'
 import Dashboard from '../Components/Dashboard.vue'
 import Profile from '../Components/dashboard/Profile.vue'
 
+
+
+import ProductForm from '../Components/ProductForm.vue'
+import PrintForm from '../Components/PrintForm.vue'
+import CopyForm from '../Components/CopyForm.vue'
+import DuePayment from '../Components/DuePaymentForm.vue'
+
+
+
+
 import store from '@/store';
 const routes = [
     { path: '/', 
         component: Home },
     { path: '/home', 
         name:'Home',
-        component: Home },
+        component: Home },    
+    { path: '/product-form', 
+        name:'ProductForm',
+        component: ProductForm },    
+    { path: '/print-form', 
+        name:'PrintForm',
+        component: PrintForm },    
+    { path: '/copy-form', 
+        name:'CopyForm',
+        component: CopyForm },    
+    { path: '/due-payment', 
+        name:'DuePayment',
+        component: DuePayment },
+
+
+
+
+
     { path: '/education', 
         name:'Education',
         component: Education },

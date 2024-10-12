@@ -10,7 +10,7 @@ class CopySale extends Model
     use HasFactory;
 
     protected $table = 'copy_sales';
-    public $timestamps = 'false';
+    public $timestamps = false;
     protected $fillable = ['shopId','productName','saleQuantity','saleAmount' ];
 
 }

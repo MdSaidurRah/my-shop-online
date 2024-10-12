@@ -10,7 +10,7 @@ class ProductSale extends Model
     use HasFactory;
 
     protected $table = 'product_sales';
-    public $timestamps = 'false';
-    protected $fillable = ['shopId', 'productName', 'saleQuantity', 'saleAmount',];
+    public $timestamps = false;
+    protected $fillable = ['shopId', 'productName', 'saleQuantity', 'saleAmount'];
 
 }

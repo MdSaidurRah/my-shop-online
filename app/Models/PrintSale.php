@@ -10,7 +10,7 @@ class PrintSale extends Model
     use HasFactory;
 
     protected $table = 'print_sales';
-    public $timestamps = 'false';
+    public $timestamps = false;
     protected $fillable = [ 'shopId', 'productName', 'saleQuantity', 'saleAmount'];
 
 }

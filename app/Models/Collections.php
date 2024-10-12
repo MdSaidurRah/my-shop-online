@@ -10,7 +10,7 @@ class Collections extends Model
     use HasFactory;
 
     protected $table = 'collections';
-    public $timestamps = 'false';
+    public $timestamps = false;
     protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount', ];
 
 }

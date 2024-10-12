@@ -7,14 +7,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{productSale}} Product Sales </h1>
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{saleAmout}} Product Sales </h1>
                         <hr/>
-                        <form class="form-inline">
-                            <tr>
-                                <td><input type="number" class="form-input"   id="inputPassword2" placeholder="Password"></td>
-                                <td><button type="submit" class="btn btn-primary mb-2">+ Sale</button></td>
-                            </tr>
-                        </form>
+                        <router-link to="/product-form" class="btn btn-primary mb-2">+ Product Sales Date</router-link> 
                     </div>
                 </div>
             </div>
@@ -22,14 +17,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{printSales}} Print Sales </h1>
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{printAmount}} Print Sales </h1>
                         <hr/>
-                        <form class="form-inline">
-                            <tr>
-                                <td><input type="number" class="form-input"   id="inputPassword2" placeholder="Password"></td>
-                                <td><button type="submit" class="btn btn-primary mb-2">+ Sale</button></td>
-                            </tr>
-                        </form>
+                        <router-link to="/print-form" class="btn btn-primary mb-2">+ Print Sales Data</router-link> 
                     </div>
                 </div>
             </div>
@@ -37,14 +27,10 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{copySales}} Copy Sales </h1>
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{copyAmount}} Copy Sales </h1>
                         <hr/>
-                        <form class="form-inline">
-                            <tr>
-                                <td><input type="number" class="form-input"   id="inputPassword2" placeholder="Password"></td>
-                                <td><button type="submit" class="btn btn-primary mb-2">+ Sale</button></td>
-                            </tr>
-                        </form>
+                        <router-link to="/copy-form" class="btn btn-primary mb-2">+ Copy Sales Data</router-link> 
+
                     </div>
                 </div>
             </div>
@@ -52,14 +38,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{duePayemnts}} Due Payment </h1>
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{dueAmount}} Due Payment </h1>
                         <hr/>
-                        <form class="form-inline">
-                            <tr>
-                                <td><input type="number" class="form-input"   id="inputPassword2" placeholder="Password"></td>
-                                <td><button type="submit" class="btn btn-primary mb-2">+ Sale</button></td>
-                            </tr>
-                        </form>
+                        <router-link to="/due-payment" class="btn btn-primary mb-2">+ Due Payment</router-link> 
                     </div>
                 </div>
             </div>
@@ -67,7 +48,7 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{collections}} Collections </h1>
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{collectionAmount}} Collections </h1>
                         <hr/>
                         <form class="form-inline">
                             <tr>
@@ -93,6 +74,7 @@
 
 import axios from 'axios'
 import store from '../store/index';
+import { RouterLink } from 'vue-router';
 
 export default {
 
@@ -100,47 +82,56 @@ export default {
     data()
     {
         return {
-            'productSale':'',
-            'printSales':'',
-            'copySales':'',
-            'duePayemnts':'',
-            'collections':''
+            'saleAmout':'',
+            'printAmount':'',
+            'copyAmount':'',
+            'dueAmount':'',
+            'collectionAmount':'',
+            'salesDate':
+            {
+                'saleQuantity':''
+            }
         }
     },
 
+ 
     mounted()
     {
-        this.loadData()
+        this.$store.dispatch('fetchAppData');     
+        this.saleAmout = store.getters.productSales
+        this.printAmount = store.getters.printSales
+        this.copyAmount = store.getters.copySales
+        this.dueAmount = store.getters.duePayemnts
+        this.collectionAmount = store.getters.collections
+    },
 
-        console.log(store.getters.productSales)
+    watch()
+    {
 
-        this.productSale = store.getters.productSales
-        this.printSales = store.getters.printSales
-        this.copySales = store.getters.copySales
-        this.duePayemnts = store.getters.duePayemnts
-        this.collections = store.getters.collections
     },
 
     methods: {
 
-        loadData()
+        async addProductSale()
         {
-            axios.get('/all-datas')
+            
+            await axios.post('/add-product-salse',this.salesDate)
                 .then(function (response) {
-                    if(response.data.status =='success')
-                    {
-                        store.commit('loadProductSale',response.data.productSale)
-                        store.commit('loadCopySale', response.data.copySale)
-                        store.commit('loadPrintSale',response.data.printSale)
-                        store.commit('loadDuePayment', response.data.dueAmount)
-                        store.commit('loadCollection',response.data.collection)
-                    }
-                    // store.commit('loadEducation',response.data.education)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
+                    if(response.data.status =='SUCCESS')
+                        {
+                            alert("Product Sale Save Successfully")
+                            store.commit('loadProductSale',response.data.productSale)
+                        }
+                    })
+                    .catch(function (error) {
+                         console.log(error);
+                    });
+        },
+
+
+
+
+       
 
 
     }
