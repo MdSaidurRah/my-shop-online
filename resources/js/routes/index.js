@@ -2,24 +2,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '../Components/Home.vue'
-import Content from '../Components/Content.vue'
-import Education from '../Components/Education.vue'
-import Experience from '../Components/Experience.vue'
-import Expertise from '../Components/Expertise.vue'
-import Skills from '../Components/Skills.vue'
-import AboutUs from '../Components/AboutUs.vue'
-import ContactUs from '../Components/ContactUs.vue'
-import Reference from '../Components/Reference.vue'
-import Login from '../Components/Login.vue'
-import Logout from '../Components/Logout.vue'
-import Register from '../Components/Register.vue'
-import Subscription from '../Components/Subscription.vue'
-import Payment from '../Components/Payment.vue'
-import Dashboard from '../Components/Dashboard.vue'
-import Profile from '../Components/dashboard/Profile.vue'
-
-
-
+import Detail from '../Components/detail.vue'
+import Report from '../Components/report.vue'
+import Shop from '../Components/shop.vue'
 import ProductForm from '../Components/ProductForm.vue'
 import PrintForm from '../Components/PrintForm.vue'
 import CopyForm from '../Components/CopyForm.vue'
@@ -36,7 +21,10 @@ const routes = [
         component: Home },
     { path: '/home', 
         name:'Home',
-        component: Home },    
+        component: Home },        
+    { path: '/shop', 
+        name:'Shop',
+        component: Shop },    
     { path: '/product-form', 
         name:'ProductForm',
         component: ProductForm },    
@@ -54,56 +42,13 @@ const routes = [
         component: Collection },    
     { path: '/expenses', 
         name:'Expenses',
-        component: Expenses },
-
-
-
-
-
-    { path: '/education', 
-        name:'Education',
-        component: Education },
-    { path: '/experience',
-        name:'Experience',
-         component: Experience },
-    { path: '/expertise', 
-        name:'Expertise',
-        component: Expertise },
-    { path: '/skills', 
-        name:'Skills',
-        component: Skills },
-    { path: '/about-us', 
-        name:'AboutUs',
-        component: AboutUs },
-    { path: '/contact-us', 
-        name:'ContactUs',
-        component: ContactUs },
-    { path: '/reference', 
-        name:'Reference',
-        component: Reference },
-    { path: '/login', 
-        name:'Login',
-        component: Login },
-    { path: '/register/:subscriptionkey', 
-        name: 'Register', 
-        component: Register },
-    { path: '/get-subscription', 
-        name:'Subscription',
-        component: Subscription },
-    { path: '/payment', 
-        name:'Payment',
-        component: Payment },    
-    { path: '/logout', 
-        name:'Logout',
-        component: Logout},
-    { path: '/dashboard', 
-            name:'Dashbaord',
-            component: Dashboard,
-            meta: {
-                requiresAuth: true,
-              }
-    }
-    
+        component: Expenses },        
+    { path: '/detail', 
+        name:'Detail',
+        component: Detail },        
+    { path: '/report', 
+        name:'Report',
+        component: Report }    
 ]
 
 

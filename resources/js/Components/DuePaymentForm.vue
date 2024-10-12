@@ -64,7 +64,7 @@ export default {
                             alert("Due Amount Save Successfully")
                             store.commit('loadDuePayment',response.data.dueAmount)
                             console.log(response.data.dueAmount)
-                            router.push('Home')
+                            router.push('Shop')
                         }
                 })
                 .catch(function (error) {

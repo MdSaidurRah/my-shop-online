@@ -6,11 +6,8 @@
                 <div class="row gx-0 align-items-center">
                     <div class="col-lg-8 text-center text-lg-start mb-lg-0">
                         <div class="d-flex flex-wrap">
-                            <div class="border-end border-primary pe-3">
-                                <a href="#" class="text-muted small"><i class="fas fa-map-marker-alt text-primary me-2"></i>Find A Location</a>
-                            </div>
                             <div class="ps-3">
-                                <a href="mailto:example@gmail.com" class="text-muted small"><i class="fas fa-envelope text-primary me-2"></i>example@gmail.com</a>
+                                <a href="mailto:example@gmail.com" class="text-muted small"><i class="fas fa-envelope text-primary me-2"></i>eduinntech.official@gmail.com</a>
                             </div>
                         </div>
                     </div>
@@ -53,14 +50,15 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-0 mx-lg-auto">
-                            <router-link class="nav-item nav-link active" to="/">Home</router-link>
-                            <router-link  class="nav-item nav-link active" to="/education">Education</router-link>    
+                            <router-link class="nav-item nav-link active" to="/">Home</router-link>                         
+                            <router-link class="nav-item nav-link active" to="/report">Report</router-link>                         
+                            <router-link class="nav-item nav-link active" to="/detail">Detail</router-link>                         
                         </div>
                     </div>
                     <div class="d-none d-xl-flex flex-shrink-0 ps-4">
                         <div class="d-flex flex-column ms-3">
-                            <span>Call to Our Experts</span>
-                            <a href="tel:+ 0123 456 7890"><span class="text-dark">Free: + 0123 456 7890</span></a>
+                            <span>Please Contact @</span>
+                            <a href="tel:+ 0123 456 7890"><span class="text-dark">01852012518</span></a>
                         </div>
                     </div>
                 </nav>

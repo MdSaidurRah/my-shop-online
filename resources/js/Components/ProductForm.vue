@@ -56,7 +56,7 @@ export default {
                         {
                             alert("Product Sale Save Successfully")
                             store.commit('loadProductSale',response.data.productSale)
-                            router.push('Home')
+                            router.push('Shop')
                         }
                 })
                 .catch(function (error) {

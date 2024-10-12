@@ -51,7 +51,7 @@ export default {
                         {
                             alert("Product Sale Save Successfully")
                             store.commit('loadExpenses',response.data.expenses)
-                            router.push('Home')
+                            router.push('Shop')
                         }
                 })
                 .catch(function (error) {
