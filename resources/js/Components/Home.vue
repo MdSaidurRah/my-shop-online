@@ -50,12 +50,17 @@
                     <div class="card-body">
                         <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{collectionAmount}} Collections </h1>
                         <hr/>
-                        <form class="form-inline">
-                            <tr>
-                                <td><input type="number" class="form-input"   id="inputPassword2" placeholder="Password"></td>
-                                <td><button type="submit" class="btn btn-primary mb-2">+ Sale</button></td>
-                            </tr>
-                        </form>
+                        <router-link to="/collection" class="btn btn-primary mb-2">+ Collection</router-link> 
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h1><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{expenseData}} Expense </h1>
+                        <hr/>
+                        <router-link to="/expenses" class="btn btn-primary mb-2">+ Expenses</router-link> 
                     </div>
                 </div>
             </div>
@@ -87,10 +92,7 @@ export default {
             'copyAmount':'',
             'dueAmount':'',
             'collectionAmount':'',
-            'salesDate':
-            {
-                'saleQuantity':''
-            }
+            'expenseData':''
         }
     },
 
@@ -103,38 +105,12 @@ export default {
         this.copyAmount = store.getters.copySales
         this.dueAmount = store.getters.duePayemnts
         this.collectionAmount = store.getters.collections
+        this.expenseData = store.getters.expenses
     },
 
-    watch()
-    {
-
-    },
-
-    methods: {
-
-        async addProductSale()
-        {
-            
-            await axios.post('/add-product-salse',this.salesDate)
-                .then(function (response) {
-                    if(response.data.status =='SUCCESS')
-                        {
-                            alert("Product Sale Save Successfully")
-                            store.commit('loadProductSale',response.data.productSale)
-                        }
-                    })
-                    .catch(function (error) {
-                         console.log(error);
-                    });
-        },
 
 
-
-
-       
-
-
-    }
+    
 
 }
 

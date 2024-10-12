@@ -1,12 +1,11 @@
 
 
-
 <template>
 
 
     <div class="content">
 
-        <h3>Due Payment Data</h3>
+        <h3>Collections Data</h3>
         <hr/>
         <form class="form-inline" @submit.prevent="addProductSale">
             <div class="form-group">
@@ -57,12 +56,12 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/save-due-payment',this.form)
+            await axios.post('/save-collection',this.form)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Due Amount Save Successfully")
-                            store.commit('loadDuePayment',response.data.dueAmount)
+                            store.commit('loadCollection',response.data.collection)
                             console.log(response.data.dueAmount)
                             router.push('Home')
                         }

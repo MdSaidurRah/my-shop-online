@@ -1,21 +1,16 @@
-
-
 <template>
-
-   
-
     <div class="content">
-        <h3>Copy Sales Data</h3>
+        <h3>Expenses Data</h3>
         <hr/>
         <form class="form-inline" @submit.prevent="addProductSale">
             <div class="form-group">
-                <label for="exampleInputEmail1">Product Quantity</label>
-                <input type="number" class="form-control" v-model="salesDate.saleQuantity" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <label for="exampleInputEmail1">Expense Head</label>
+                <input type="text" class="form-control" v-model="expenseDate.expenseHead" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
             <br/>
             <div class="form-group">
-                <label for="exampleInputPassword1">Amount</label>
-                <input type="number" class="form-control"  v-model="salesDate.saleAmount"  id="exampleInputPassword1">
+                <label for="exampleInputPassword1">Expense Amount</label>
+                <input type="number" class="form-control"  v-model="expenseDate.expenseAmount"  id="exampleInputPassword1">
             </div>
             <br/>
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -38,10 +33,10 @@ export default {
     data()
     {
         return {
-            'salesDate':
+            'expenseDate':
             {
-                'saleQuantity':'',
-                'saleAmount':''
+                'expenseHead':'',
+                'expenseAmount':''
             }
         }
     },
@@ -50,12 +45,12 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/save-copy-sales',this.salesDate)
+            await axios.post('/save-expense',this.expenseDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Product Sale Save Successfully")
-                            store.commit('loadCopySale',response.data.copySales)
+                            store.commit('loadExpenses',response.data.expenses)
                             router.push('Home')
                         }
                 })

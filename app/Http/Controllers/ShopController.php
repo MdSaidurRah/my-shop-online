@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Collections;
 use App\Models\CopySale;
 use App\Models\DuePayment;
+use App\Models\Expenses;
 use App\Models\PrintSale;
 use App\Models\ProductSale;
 use Carbon\Carbon;
@@ -25,6 +26,7 @@ class ShopController extends Controller
         $printSales  = PrintSale::where('date',$date)->count();
         $dueAmount  = DuePayment::where('date',$date)->count();
         $collection  = Collections::where('date',$date)->count();
+        $expenses  = Expenses::where('date',$date)->count();
 
         return response([
             'status' => 'success',
@@ -33,6 +35,7 @@ class ShopController extends Controller
             'printSale' => $printSales,
             'dueAmount' => $dueAmount,
             'collection' => $collection, 
+            'expenses' => $expenses, 
             'code' => 200
         ]);
     }
@@ -81,12 +84,42 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $addDuePayment = DuePayment::create($request->all());
         $dueAmount  = DuePayment::where('date',$date)->count();
+
+        Log::info( $dueAmount);
         return response([
             'status' => 'SUCCESS',
             'dueAmount' => $dueAmount,
             'code' => 200
         ]);
-        # code...
+
+    }    
+    
+    public function addCollection(Request $request)
+    {
+        $date = Carbon::now()->format('Y-m-d');
+        $addCollection = Collections::create($request->all());
+        $collection  = Collections::where('date',$date)->count();
+
+        return response([
+            'status' => 'SUCCESS',
+            'collection' => $collection,
+            'code' => 200
+        ]);
+
+    }    
+    
+    public function addExpense(Request $request)
+    {
+        $date = Carbon::now()->format('Y-m-d');
+        $addExpenses = Expenses::create($request->all());
+        $expenses  = Expenses::where('date',$date)->count();
+
+        return response([
+            'status' => 'SUCCESS',
+            'expenses' => $expenses,
+            'code' => 200
+        ]);
+
     }
 
 }

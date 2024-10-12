@@ -24,6 +24,8 @@ import ProductForm from '../Components/ProductForm.vue'
 import PrintForm from '../Components/PrintForm.vue'
 import CopyForm from '../Components/CopyForm.vue'
 import DuePayment from '../Components/DuePaymentForm.vue'
+import Collection from '../Components/CollectionForm.vue'
+import Expenses from '../Components/ExpenseForm.vue'
 
 
 
@@ -46,7 +48,13 @@ const routes = [
         component: CopyForm },    
     { path: '/due-payment', 
         name:'DuePayment',
-        component: DuePayment },
+        component: DuePayment },    
+    { path: '/collection', 
+        name:'Collection',
+        component: Collection },    
+    { path: '/expenses', 
+        name:'Expenses',
+        component: Expenses },
 
 
 

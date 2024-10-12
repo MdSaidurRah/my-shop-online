@@ -45,6 +45,8 @@ Route::post('/save-copy-sales',[ShopController::class,'addCopySales']);
 
 
 Route::post('/save-due-payment',[ShopController::class,'addDuaPayment']);
+Route::post('/save-collection',[ShopController::class,'addCollection']);
+Route::post('/save-expense',[ShopController::class,'addExpense']);
 
 
 Route::post('/add-collection',[ShopController::class,'addCollection']);

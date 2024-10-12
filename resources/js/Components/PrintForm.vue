@@ -50,7 +50,7 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/add-print-sales',this.salesDate)
+            await axios.post('/save-print-sales',this.salesDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {

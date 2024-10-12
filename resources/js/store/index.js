@@ -7,7 +7,8 @@ export default createStore({
     'copySale':'0',
     'printSale':'0',
     'duePayment':'0',
-    'collection':'0'
+    'collection':'0',
+    'expenses':'0',
   },
 
   mutations: {
@@ -17,17 +18,17 @@ export default createStore({
     loadCopySale: (state, data) => {
       state.copySale = data;
     },
-
     loadPrintSale: (state, data) => {
       state.printSale = data;
     },
-
     loadDuePayment: (state, data) => {
       state.duePayment = data;
     },
-
     loadCollection: (state, data) => {
       state.collection = data;
+    },    
+    loadExpenses: (state, data) => {
+      state.expenses = data;
     }
   },
 
@@ -47,6 +48,9 @@ export default createStore({
     },
     collections: state => {
       return state.collection
+    },
+    expenses: state => {
+      return state.expenses
     }
   },
 
@@ -61,6 +65,7 @@ export default createStore({
                                 commit('loadPrintSale',response.data.printSale)
                                 commit('loadDuePayment', response.data.dueAmount)
                                 commit('loadCollection',response.data.collection)
+                                commit('loadExpenses',response.data.expenses)
                             }                          
                         })
                         .catch(function (error) {
