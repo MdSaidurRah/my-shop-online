@@ -42,7 +42,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light"> 
                     <a href="#" class="navbar-brand p-0">
-                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i> MeOnline</h1>
+                        <h1 class="text-primary mb-0"><i class="fab fa-slack me-2"></i> ShopOnline</h1>
                         <!-- <img src="img/logo.png" alt="Logo"> -->
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -52,7 +52,7 @@
                         <div class="navbar-nav mx-0 mx-lg-auto">
                             <router-link class="nav-item nav-link active" to="/">Home</router-link>                         
                             <router-link class="nav-item nav-link active" to="/report">Report</router-link>                         
-                            <router-link class="nav-item nav-link active" to="/detail">Detail</router-link>                         
+                            <router-link class="nav-item nav-link active" to="/summery">Summery</router-link>                         
                         </div>
                     </div>
                     <div class="d-none d-xl-flex flex-shrink-0 ps-4">

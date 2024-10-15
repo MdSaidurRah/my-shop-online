@@ -11,6 +11,6 @@ class PrintSale extends Model
 
     protected $table = 'print_sales';
     public $timestamps = false;
-    protected $fillable = [ 'shopId', 'productName', 'saleQuantity', 'saleAmount'];
+    protected $fillable = [ 'shopId', 'productName', 'saleQuantity', 'saleAmount','date'];
 
 }

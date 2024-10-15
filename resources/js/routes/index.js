@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Home from '../Components/Home.vue'
-import Detail from '../Components/detail.vue'
+import Summery from '../Components/summery.vue'
 import Report from '../Components/report.vue'
 import Shop from '../Components/shop.vue'
 import ProductForm from '../Components/ProductForm.vue'
@@ -43,9 +43,9 @@ const routes = [
     { path: '/expenses', 
         name:'Expenses',
         component: Expenses },        
-    { path: '/detail', 
-        name:'Detail',
-        component: Detail },        
+    { path: '/summery', 
+        name:'Summery',
+        component: Summery },        
     { path: '/report', 
         name:'Report',
         component: Report }    

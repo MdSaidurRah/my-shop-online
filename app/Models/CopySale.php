@@ -11,6 +11,6 @@ class CopySale extends Model
 
     protected $table = 'copy_sales';
     public $timestamps = false;
-    protected $fillable = ['shopId','productName','saleQuantity','saleAmount' ];
+    protected $fillable = ['shopId','productName','saleQuantity','saleAmount','date' ];
 
 }

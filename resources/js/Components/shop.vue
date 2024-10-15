@@ -4,9 +4,10 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2><i  class="pi pi-gift" style="font-size: 1rem; font-size: 30px;"></i> {{saleAmout}} Product Sales </h2>
+                        <h2>{{saleAmout}}  Product </h2>
                         <hr/>
-                        <router-link to="/product-form" class="btn btn-primary mb-2">+ Product Sales Date</router-link> 
+                        <h2> </h2>
+                        <router-link to="/product-form" class="btn btn-primary mb-2"> Product Sales Date</router-link> 
                     </div>
                 </div>
             </div>
@@ -14,8 +15,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2><i  class="pi pi-print" style="font-size: 1rem; font-size: 30px;"></i> {{printAmount}} Print Sales </h2>
+                        <h2>Print </h2>
                         <hr/>
+                        <h2> {{printAmount}} </h2>
                         <router-link to="/print-form" class="btn btn-primary mb-2">+ Print Sales Data</router-link> 
                     </div>
                 </div>
@@ -24,8 +26,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2><i  class="pi pi-copy" style="font-size: 1rem; font-size: 30px;"></i> {{copyAmount}} Copy Sales </h2>
+                        <h2> Copy </h2>
                         <hr/>
+                        <h2>{{copyAmount}}</h2>
                         <router-link to="/copy-form" class="btn btn-primary mb-2">+ Copy Sales Data</router-link> 
 
                     </div>
@@ -35,8 +38,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> {{dueAmount}} Due Payment </h2>
+                        <h2> Due Payment </h2>
                         <hr/>
+                        <h2>{{dueAmount}}</h2>
                         <router-link to="/due-payment" class="btn btn-primary mb-2">+ Due Payment</router-link> 
                     </div>
                 </div>
@@ -45,8 +49,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> {{collectionAmount}} Collections </h2>
+                        <h2> Collections </h2>
                         <hr/>
+                        <h2>{{collectionAmount}}</h2>
                         <router-link to="/collection" class="btn btn-primary mb-2">+ Collection</router-link> 
                     </div>
                 </div>
@@ -55,8 +60,9 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> {{expenseData}} Expense </h2>
+                        <h2>  Expense </h2>
                         <hr/>
+                        <h2>{{expenseData}}</h2>
                         <router-link to="/expenses" class="btn btn-primary mb-2">+ Expenses</router-link> 
                     </div>
                 </div>

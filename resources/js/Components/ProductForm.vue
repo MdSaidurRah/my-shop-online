@@ -9,6 +9,11 @@
         <hr/>
         <form class="form-inline" @submit.prevent="addProductSale">
             <div class="form-group">
+                <label for="exampleInputEmail1">Product Name</label>
+                <input type="text" class="form-control" v-model="salesDate.productName" id="exampleInputEmail1" aria-describedby="emailHelp" >
+            </div>
+            <br/>
+            <div class="form-group">
                 <label for="exampleInputEmail1">Product Quantity</label>
                 <input type="number" class="form-control" v-model="salesDate.saleQuantity" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
@@ -18,7 +23,7 @@
                 <input type="number" class="form-control"  v-model="salesDate.saleAmount"  id="exampleInputPassword1">
             </div>
             <br/>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Save</button>
         </form>
     </div>
 
@@ -41,7 +46,8 @@ export default {
             'salesDate':
             {
                 'saleQuantity':'',
-                'saleAmount':''
+                'saleAmount':'',
+                'productName':''
             }
         }
     },

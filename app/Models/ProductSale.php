@@ -11,6 +11,6 @@ class ProductSale extends Model
 
     protected $table = 'product_sales';
     public $timestamps = false;
-    protected $fillable = ['shopId', 'productName', 'saleQuantity', 'saleAmount'];
+    protected $fillable = ['shopId', 'productName', 'saleQuantity', 'saleAmount','date'];
 
 }

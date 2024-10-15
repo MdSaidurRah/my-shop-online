@@ -11,6 +11,6 @@ class Expenses extends Model
 
     protected $table = 'expenses';
     public $timestamps = false;
-    protected $fillable = [ 'shopId', 'expenseHead', 'expenseAmount'];
+    protected $fillable = [ 'shopId', 'expenseHead', 'expenseAmount','date'];
 
 }
