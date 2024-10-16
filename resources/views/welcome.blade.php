@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>LifeSure - Life Insurance Website Template</title>
+        <title>ShopOnline | EduInnTech</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -33,21 +33,21 @@
 
     <body>
 
-        
+
 
 
         <div id="app"></div>
 
 
 
-        
+
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>   
+        <a href="#" class="btn btn-primary btn-lg-square rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
         @vite('resources/js/app.js')
-        
+
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -57,7 +57,7 @@
         <script src="{{url('/assets/lib/counterup/counterup.min.js')}}"></script>
         <script src="{{url('/assets/lib/lightbox/js/lightbox.min.js')}}"></script>
         <script src="{{url('/assets/lib/owlcarousel/owl.carousel.min.js')}}"></script>
-        
+
 
         <!-- Template Javascript -->
         <script src="{{url('/assets/js/main.js')}}"></script>
