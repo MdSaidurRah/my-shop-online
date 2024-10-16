@@ -14,8 +14,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
         <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet"  href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
 
         <!-- Libraries Stylesheet -->
         <link href="{{url('/assets/lib/animate/animate.min.css')}}" rel="stylesheet" />
