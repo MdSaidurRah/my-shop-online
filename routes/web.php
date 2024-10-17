@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\SalesController;
@@ -30,7 +31,11 @@ Route::get('/daily-collection',[CalculationController::class,'dailyCollection'])
 
 
 
-Route::get('/all-data',[ShopController::class,'allData']);
+Route::get('/all-data',[DataController::class,'allData']);
+Route::get('/all-data-table',[DataController::class,'allDataTable']);
+
+
+
 
 Route::post('/save-product-sales',[ShopController::class,'addProductSales']);
 Route::post('/save-print-sales',[ShopController::class,'addPrintSales']);

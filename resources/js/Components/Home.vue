@@ -21,6 +21,7 @@ export default {
      mounted()
     {
         this.$store.dispatch('fetchAppData');     
+        this.$store.dispatch('dataTable');     
     } 
 }
 

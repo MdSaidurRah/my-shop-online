@@ -2,49 +2,99 @@
     
     <div class="content">
         <h4> Daily Business Summery </h4>
+        <hr/>
 
 
-        <table class="table table-bordered table-hover">
-            <tr>
-                <td colspan="2">Income</td>
-                <td colspan="2">Expense</td>
-            </tr>
-            <tr>
-                <td>Product Sales</td>
-                <td>{{ productSale }}</td>
-                <td>Expense</td>
-                <td>{{ expense }}</td>
-            </tr>
-            <tr>
-                <td>Copy Sales</td>
-                <td>{{ copySale }}</td>
-                <td>Due Payment</td>
-                <td>{{ dailyDuePayment }}</td>
-            </tr>
-            <tr>
-                <td>Print Sales</td>
-                <td>{{ printSale }}</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Collection</td>
-                <td>{{ dailyCollection }}</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>Total Income</td>
-                <td>{{ totalIncome }}</td>
-                <td>Total Expense</td>
-                <td>{{ totalExpense }}</td>
-            </tr>
-            <tr>
-                <td colspan="3">Final Status</td>
-            
-                <td>{{ finalStatus }} ({{ businessStatus }})</td>
-            </tr>
-        </table>
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <h5> Total Sales</h5>
+                <table class="table table-bordered table-hover">
+                <tr>
+                    <td >#</td>
+                    <td >Head</td>
+                    <td >Amount</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Product Sales</td>
+                    <td>{{ productSale }}</td>
+                   
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Copy Sales</td>
+                    <td>{{ copySale }}</td>
+                   
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Print Sales</td>
+                    <td>{{ printSale }}</td>
+                 
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Collection</td>
+                    <td>{{ dailyCollection }}</td>
+                   
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Total Income</td>
+                    <td>{{ totalIncome }}</td>
+                
+                </tr>
+                
+            </table>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <h5> Total Expenses</h5>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <td >#</td>
+                        <td >Head</td>
+                        <td >Amount</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Expense</td>
+                        <td>{{ expense }}</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Due Payment</td>
+                        <td>{{ dailyDuePayment }}</td>
+                    </tr>
+                  
+                    <tr>
+                        <td>3</td>
+                        <td>Total Expense</td>
+                        <td>{{ totalExpense }}</td>
+                    </tr>
+                    
+                </table>
+
+
+                
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <table class="table table-bordered">
+                    <tr>
+                        <td colspan="3">Final Status</td>
+                        <td>{{ finalStatus }} ({{ businessStatus }})</td>
+                    </tr>
+                </table>
+                
+            </div>   
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6"></div>   
+        </div>
+
+
+        
         
     </div>
 </template>

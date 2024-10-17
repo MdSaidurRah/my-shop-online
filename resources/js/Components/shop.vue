@@ -5,8 +5,10 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>{{saleAmout}}  Product </h2>
+                        <span v-for="(pd, key) in productTable" :key="pd.id">
+                            <span>{{ productTable[key]['saleAmount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2> </h2>
                         <router-link to="/product-form" class="btn btn-primary mb-2"> Product Sales Date</router-link> 
                     </div>
                 </div>
@@ -15,9 +17,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Print </h2>
+                        <h2>{{printAmount}} Print </h2>
+                        
+                        <span v-for="(pd, key) in printTable" :key="pd.id">
+                            <span>{{ printTable[key]['saleAmount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2> {{printAmount}} </h2>
                         <router-link to="/print-form" class="btn btn-primary mb-2">+ Print Sales Data</router-link> 
                     </div>
                 </div>
@@ -26,9 +31,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> Copy </h2>
+                        <h2>{{copyAmount}} Copy </h2>
+                       
+                        <span v-for="(pd, key) in copyTable" :key="pd.id">
+                            <span>{{ copyTable[key]['saleAmount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2>{{copyAmount}}</h2>
                         <router-link to="/copy-form" class="btn btn-primary mb-2">+ Copy Sales Data</router-link> 
 
                     </div>
@@ -38,9 +46,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> Due Payment </h2>
+                        <h2>{{dueAmount}} Due Payment </h2>
+                       
+                        <span v-for="(pd, key) in dueTable" :key="pd.id">
+                            <span>{{ dueTable[key]['amount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2>{{dueAmount}}</h2>
                         <router-link to="/due-payment" class="btn btn-primary mb-2">+ Due Payment</router-link> 
                     </div>
                 </div>
@@ -49,9 +60,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> Collections </h2>
+                        <h2>{{collectionAmount}} Collections </h2>
+                        
+                        <span v-for="(pd, key) in collectionTable" :key="pd.id">
+                            <span>{{ collectionTable[key]['amount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2>{{collectionAmount}}</h2>
                         <router-link to="/collection" class="btn btn-primary mb-2">+ Collection</router-link> 
                     </div>
                 </div>
@@ -60,9 +74,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>  Expense </h2>
+                        <h2> {{expenseData}} Expense </h2>
+                        
+                        <span v-for="(pd, key) in expenseTable" :key="pd.id">
+                            <span>{{ expenseTable[key]['expenseAmount']}}</span>+
+                        </span>
                         <hr/>
-                        <h2>{{expenseData}}</h2>
                         <router-link to="/expenses" class="btn btn-primary mb-2">+ Expenses</router-link> 
                     </div>
                 </div>
@@ -86,7 +103,14 @@ export default {
             'copyAmount':'',
             'dueAmount':'',
             'collectionAmount':'',
-            'expenseData':''
+            'expenseData':'',
+
+            'productTable':[],
+            'copyTable':[],
+            'printTable':[],
+            'dueTable':[],
+            'collectionTable':[],
+            'expenseTable':[],
         }
     },
  
@@ -98,6 +122,15 @@ export default {
         this.dueAmount = store.getters.duePayemnts
         this.collectionAmount = store.getters.collections
         this.expenseData = store.getters.expenses
+
+        this.productTable = store.getters.productTables
+        this.copyTable = store.getters.copyTables
+        this.printTable = store.getters.printTables
+        this.dueTable = store.getters.dueTables
+        this.collectionTable = store.getters.collectionTables
+        this.expenseTable = store.getters.expenseTables
+
+        console.log(this.expenseTable)
     },
 
 
