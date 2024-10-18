@@ -3,12 +3,6 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    'productSale':'0',
-    'copySale':'0',
-    'printSale':'0',
-    'duePayment':'0',
-    'collection':'0',
-    'expenses':'0',
     'productTable':[],
     'copyTable':[],
     'printTable':[],
@@ -36,24 +30,7 @@ export default createStore({
     loadExpenseTable: (state, data) => {
       state.expenseTable = data;
     },    
-    loadProductSale: (state, data) => {
-      state.productSale = data;
-    },
-    loadCopySale: (state, data) => {
-      state.copySale = data;
-    },
-    loadPrintSale: (state, data) => {
-      state.printSale = data;
-    },
-    loadDuePayment: (state, data) => {
-      state.duePayment = data;
-    },
-    loadCollection: (state, data) => {
-      state.collection = data;
-    },    
-    loadExpenses: (state, data) => {
-      state.expenses = data;
-    }
+   
   },
 
   getters:
@@ -77,47 +54,13 @@ export default createStore({
       return state.expenseTable;
     }, 
 
-    productSales: state => {
-      return state.productSale
-    },
-    printSales: state => {
-      return state.printSale
-    },
-    copySales: state => {
-      return state.copySale
-    },
-    duePayemnts: state => {
-      return state.duePayment
-    },
-    collections: state => {
-      return state.collection
-    },
-    expenses: state => {
-      return state.expenses
-    }
   },
 
   actions: {
-    fetchAppData({ commit }) {
-      axios.get('/all-data')
-                .then(function (response) {
-                            if(response.data.status =='success')
-                            {
-                                commit('loadProductSale', response.data.productSale)
-                                commit('loadCopySale', response.data.copySale)
-                                commit('loadPrintSale',response.data.printSale)
-                                commit('loadDuePayment', response.data.dueAmount)
-                                commit('loadCollection',response.data.collection)
-                                commit('loadExpenses',response.data.expenses)
-                            }                          
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-    },
+
 
     dataTable({ commit }) {
-      axios.get('/all-data-table')
+      axios.get('https://eduinntech.com/shop/all-data-table')
                 .then(function (response) {
 
               

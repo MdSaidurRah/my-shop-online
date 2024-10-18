@@ -4,12 +4,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="fas fa-gift"></i> Product </h4>
+                        <h4><i class="fas fa-gift item-icon"></i> Product </h4>
                         <span v-for="(pd, key) in productTable" :key="pd.id">
                             <span class="data-value">{{ productTable[key]['saleAmount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/product-form" class="btn btn-primary mb-2"> <i class="far fa-plus-square"></i> Product Sales </router-link> 
+                        <router-link to="/product-form" class="btn btn-warning mb-2"> <i class="fas fa-plus"></i> <i class="fas fa-gift"></i></router-link> 
                     </div>
                 </div>
             </div>
@@ -17,13 +16,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="fas fa-print"></i> Print </h4>
-                        
+                        <h4><i class="fas fa-print item-icon"></i> Print </h4>
                         <span v-for="(pd, key) in printTable" :key="pd.id">
                             <span class="data-value">{{ printTable[key]['saleAmount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/print-form" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Print Sales </router-link> 
+                        <router-link to="/print-form" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="fas fa-print"></i> </router-link> 
                     </div>
                 </div>
             </div>
@@ -31,13 +28,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="far fa-copy"></i> Copy </h4>
-                       
+                        <h4><i class="far fa-copy item-icon"></i> Copy </h4>
                         <span v-for="(pd, key) in copyTable" :key="pd.id">
                             <span class="data-value">{{ copyTable[key]['saleAmount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/copy-form" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Copy Sales </router-link> 
+                        <router-link to="/copy-form" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="far fa-copy"></i> </router-link> 
 
                     </div>
                 </div>
@@ -46,13 +41,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="fas fa-sync-alt"></i> Due Payment </h4>
-                       
+                        <h4><i class="fas fa-sync-alt item-icon"></i> Dues </h4>
                         <span v-for="(pd, key) in dueTable" :key="pd.id">
                             <span class="data-value">{{ dueTable[key]['amount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/due-payment" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Due Payment</router-link> 
+                        <router-link to="/due-payment" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="fas fa-sync-alt"></i></router-link> 
                     </div>
                 </div>
             </div>
@@ -60,13 +53,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="fas fa-hand-holding-heart"></i> Collections </h4>
-                        
+                        <h4><i class="fas fa-hand-holding-heart item-icon"></i> Collections </h4>
                         <span v-for="(pd, key) in collectionTable" :key="pd.id">
                             <span class="data-value">{{ collectionTable[key]['amount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/collection" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Collection</router-link> 
+                        <router-link to="/collection" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="fas fa-hand-holding-heart"></i></router-link> 
                     </div>
                 </div>
             </div>
@@ -74,13 +65,11 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4><i class="fas fa-tasks"></i> Expense </h4>
-                        
+                        <h4><i class="fas fa-tasks item-icon"></i> Expense </h4>
                         <span v-for="(pd, key) in expenseTable" :key="pd.id">
                             <span class="data-value">{{ expenseTable[key]['expenseAmount']}}</span>+
                         </span>
-                        <hr/>
-                        <router-link to="/expenses" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Expenses</router-link> 
+                        <router-link to="/expenses" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="fas fa-tasks"></i></router-link> 
                     </div>
                 </div>
             </div>
@@ -98,13 +87,6 @@ export default {
     data()
     {
         return {
-            'saleAmout':'',
-            'printAmount':'',
-            'copyAmount':'',
-            'dueAmount':'',
-            'collectionAmount':'',
-            'expenseData':'',
-
             'productTable':[],
             'copyTable':[],
             'printTable':[],
@@ -116,21 +98,12 @@ export default {
  
     mounted()
     {   
-        this.saleAmout = store.getters.productSales
-        this.printAmount = store.getters.printSales
-        this.copyAmount = store.getters.copySales
-        this.dueAmount = store.getters.duePayemnts
-        this.collectionAmount = store.getters.collections
-        this.expenseData = store.getters.expenses
-
         this.productTable = store.getters.productTables
         this.copyTable = store.getters.copyTables
         this.printTable = store.getters.printTables
         this.dueTable = store.getters.dueTables
         this.collectionTable = store.getters.collectionTables
         this.expenseTable = store.getters.expenseTables
-
-        console.log(this.expenseTable)
     },
 
 
@@ -152,6 +125,13 @@ export default {
 
 <style>
 
+.item-icon
+{
+    background: #dddddd;
+    padding: 6px;
+    color: #853e15;
+    border-radius: 4px;
+}
 
 .data-value
 {

@@ -17,40 +17,15 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
 
-    public function allData()
-    {
-        $date = Carbon::now()->format('Y-m-d');
-        
-        $productSale  = ProductSale::where('date',$date)->count();
-        $copySales  = CopySale::where('date',$date)->count();
-        $printSales  = PrintSale::where('date',$date)->count();
-        $dueAmount  = DuePayment::where('date',$date)->count();
-        $collection  = Collections::where('date',$date)->count();
-        $expenses  = Expenses::where('date',$date)->count();
-
-        return response([
-            'status' => 'success',
-            'productSale' => $productSale,
-            'copySale' => $copySales,
-            'printSale' => $printSales,
-            'dueAmount' => $dueAmount,
-            'collection' => $collection, 
-            'expenses' => $expenses, 
-            'code' => 200
-        ]);
-    }
-
+   
     public function addProductSales(Request $request)
     {
         $date = Carbon::now()->format('Y-m-d');
         
-       
-        
         $request->request->add(['date' => $date]);
-         Log::info($request);
         
         $addProductSale = ProductSale::create($request->all());
-        $productSale  = ProductSale::where('date',$date)->count();
+        $productSale  = ProductSale::select('saleAmount')->where('date',$date)->get();
         return response([
             'status' => 'SUCCESS',
             'productSale' => $productSale,
@@ -64,7 +39,7 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $request->request->add(['date' => $date]);
         $addPrintSale = PrintSale::create($request->all());
-        $printSales  = PrintSale::where('date',$date)->count();
+        $printSales  = PrintSale::select('saleAmount')->where('date',$date)->get();
         return response([
             'status' => 'SUCCESS',
             'printSale' => $printSales,
@@ -78,7 +53,7 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $request->request->add(['date' => $date]);
         $addCopySale = CopySale::create($request->all());
-        $copySales  = CopySale::where('date',$date)->count();
+        $copySales  = CopySale::select('saleAmount')->where('date',$date)->get();
         return response([
             'status' => 'SUCCESS',
             'copySales' => $copySales,
@@ -92,7 +67,7 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $request->request->add(['date' => $date]);
         $addDuePayment = DuePayment::create($request->all());
-        $dueAmount  = DuePayment::where('date',$date)->count();
+        $dueAmount  = DuePayment::select('amount')->where('date',$date)->get();
 
         return response([
             'status' => 'SUCCESS',
@@ -107,7 +82,7 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $request->request->add(['date' => $date]);
         $addCollection = Collections::create($request->all());
-        $collection  = Collections::where('date',$date)->count();
+        $collection  = Collections::select('amount')->where('date',$date)->get();
 
         return response([
             'status' => 'SUCCESS',
@@ -122,7 +97,7 @@ class ShopController extends Controller
         $date = Carbon::now()->format('Y-m-d');
         $request->request->add(['date' => $date]);
         $addExpenses = Expenses::create($request->all());
-        $expenses  = Expenses::where('date',$date)->count();
+        $expenses  = Expenses::select('expenseAmount')->where('date',$date)->get();
 
         return response([
             'status' => 'SUCCESS',

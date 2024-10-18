@@ -50,12 +50,12 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/save-print-sales',this.salesDate)
+            await axios.post('https://eduinntech.com/shop/save-print-sales',this.salesDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Product Sale Save Successfully")
-                            store.commit('loadPrintSale',response.data.printSale)
+                            store.commit('loadPrintTable',response.data.printSale)
                             router.push('Shop')
                         }
                 })

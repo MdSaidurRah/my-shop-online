@@ -56,13 +56,12 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/save-collection',this.form)
+            await axios.post('https://eduinntech.com/shop/save-collection',this.form)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Due Amount Save Successfully")
-                            store.commit('loadCollection',response.data.collection)
-                            console.log(response.data.dueAmount)
+                            store.commit('loadCollectionTable',response.data.collection)
                             router.push('Shop')
                         }
                 })

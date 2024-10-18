@@ -127,7 +127,7 @@ export default {
     },
     methods: {
         async getSummery() {
-            let res = await axios.get("/daily-business-summery");
+            let res = await axios.get("https://eduinntech.com/shop/daily-business-summery");
             this.productSale = res.data.productSale;
             this.printSale = res.data.printSale;
             this.copySale = res.data.copySale;

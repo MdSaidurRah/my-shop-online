@@ -45,12 +45,12 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('/save-expense',this.expenseDate)
+            await axios.post('https://eduinntech.com/shop/save-expense',this.expenseDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Product Sale Save Successfully")
-                            store.commit('loadExpenses',response.data.expenses)
+                            store.commit('loadExpenseTable',response.data.expenses)
                             router.push('Shop')
                         }
                 })
