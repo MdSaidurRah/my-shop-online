@@ -4,12 +4,12 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>{{saleAmout}}  Product </h2>
+                        <h4><i class="fas fa-gift"></i> Product </h4>
                         <span v-for="(pd, key) in productTable" :key="pd.id">
-                            <span>{{ productTable[key]['saleAmount']}}</span>+
+                            <span class="data-value">{{ productTable[key]['saleAmount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/product-form" class="btn btn-primary mb-2"> Product Sales Date</router-link> 
+                        <router-link to="/product-form" class="btn btn-primary mb-2"> <i class="far fa-plus-square"></i> Product Sales </router-link> 
                     </div>
                 </div>
             </div>
@@ -17,13 +17,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>{{printAmount}} Print </h2>
+                        <h4><i class="fas fa-print"></i> Print </h4>
                         
                         <span v-for="(pd, key) in printTable" :key="pd.id">
-                            <span>{{ printTable[key]['saleAmount']}}</span>+
+                            <span class="data-value">{{ printTable[key]['saleAmount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/print-form" class="btn btn-primary mb-2">+ Print Sales Data</router-link> 
+                        <router-link to="/print-form" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Print Sales </router-link> 
                     </div>
                 </div>
             </div>
@@ -31,13 +31,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>{{copyAmount}} Copy </h2>
+                        <h4><i class="far fa-copy"></i> Copy </h4>
                        
                         <span v-for="(pd, key) in copyTable" :key="pd.id">
-                            <span>{{ copyTable[key]['saleAmount']}}</span>+
+                            <span class="data-value">{{ copyTable[key]['saleAmount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/copy-form" class="btn btn-primary mb-2">+ Copy Sales Data</router-link> 
+                        <router-link to="/copy-form" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Copy Sales </router-link> 
 
                     </div>
                 </div>
@@ -46,13 +46,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>{{dueAmount}} Due Payment </h2>
+                        <h4><i class="fas fa-sync-alt"></i> Due Payment </h4>
                        
                         <span v-for="(pd, key) in dueTable" :key="pd.id">
-                            <span>{{ dueTable[key]['amount']}}</span>+
+                            <span class="data-value">{{ dueTable[key]['amount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/due-payment" class="btn btn-primary mb-2">+ Due Payment</router-link> 
+                        <router-link to="/due-payment" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Due Payment</router-link> 
                     </div>
                 </div>
             </div>
@@ -60,13 +60,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2>{{collectionAmount}} Collections </h2>
+                        <h4><i class="fas fa-hand-holding-heart"></i> Collections </h4>
                         
                         <span v-for="(pd, key) in collectionTable" :key="pd.id">
-                            <span>{{ collectionTable[key]['amount']}}</span>+
+                            <span class="data-value">{{ collectionTable[key]['amount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/collection" class="btn btn-primary mb-2">+ Collection</router-link> 
+                        <router-link to="/collection" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Collection</router-link> 
                     </div>
                 </div>
             </div>
@@ -74,13 +74,13 @@
             <div class="col-sm-4">
                 <div class="card">
                     <div class="card-body">
-                        <h2> {{expenseData}} Expense </h2>
+                        <h4><i class="fas fa-tasks"></i> Expense </h4>
                         
                         <span v-for="(pd, key) in expenseTable" :key="pd.id">
-                            <span>{{ expenseTable[key]['expenseAmount']}}</span>+
+                            <span class="data-value">{{ expenseTable[key]['expenseAmount']}}</span>+
                         </span>
                         <hr/>
-                        <router-link to="/expenses" class="btn btn-primary mb-2">+ Expenses</router-link> 
+                        <router-link to="/expenses" class="btn btn-primary mb-2"><i class="far fa-plus-square"></i> Expenses</router-link> 
                     </div>
                 </div>
             </div>
@@ -153,20 +153,12 @@ export default {
 <style>
 
 
-.form-input
+.data-value
 {
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #787878;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    appearance: none;
-    border-radius: 10px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    margin: 5px;
+    font-size: 20px;
+    color: #b5006b;
+    font-weight: bold;
+
 }
 
 </style>
