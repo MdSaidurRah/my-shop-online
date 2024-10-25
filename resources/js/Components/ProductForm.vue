@@ -56,7 +56,7 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('https://eduinntech.com/shop/save-product-sales',this.salesDate)
+            await axios.post('/save-product-sales',this.salesDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {

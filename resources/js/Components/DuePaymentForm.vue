@@ -57,7 +57,7 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('https://eduinntech.com/shop/save-due-payment',this.form)
+            await axios.post('/save-due-payment',this.form)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {

@@ -45,7 +45,7 @@ export default {
 
         async addProductSale()
         {
-            await axios.post('https://eduinntech.com/shop/save-expense',this.expenseDate)
+            await axios.post('/save-expense',this.expenseDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {

@@ -9,6 +9,7 @@ export default createStore({
     'dueTable':[],
     'collectionTable':[],
     'expenseTable':[],
+    'dueItemId':'',
   },
 
   mutations: {
@@ -29,12 +30,18 @@ export default createStore({
     },      
     loadExpenseTable: (state, data) => {
       state.expenseTable = data;
+    },     
+    loadDueItemId: (state, data) => {
+      state.dueItemId = data;
     },    
    
   },
 
   getters:
   {
+    dueItem: (state, data) => {
+      return state.dueItemId ;
+    },    
     productTables: (state, data) => {
       return state.productTable ;
     },        
@@ -60,7 +67,7 @@ export default createStore({
 
 
     dataTable({ commit }) {
-      axios.get('https://eduinntech.com/shop/all-data-table')
+      axios.get('/all-data-table')
                 .then(function (response) {
 
               

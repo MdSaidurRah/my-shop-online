@@ -77,7 +77,7 @@ class CalculationController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d');
         
-        $duePayment  = DuePayment::where('date',$date)->get();
+        $duePayment  = DuePayment::select('*')->orderBy('id','DESC')->get();
       
         return response([
             'status' => 'SUCCESS',

@@ -85,17 +85,23 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Date</th>
                     <th>Customer Name</th>
                     <th>Reference Item</th>
                     <th>Tk. Amount</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(post, key) in dailyDuePayment" :key="post.id">
                     <td>{{ key+1}}</td>
+                    <td>{{ post.date}}</td>
                     <td>{{ post.customerName }}</td>
                     <td>{{ post.referenceItem}}</td>
                     <td>{{ post.amount}}</td>
+                    <td>
+                        <button @click="duePaid(post.id)" class="btn btn-sm btn-primary"> Paid</button>
+                    </td>
                 </tr>
             </tbody>
         </table> 
@@ -150,33 +156,39 @@ export default {
         this.getDailyCollection();
     },
     methods: {
+
+        duePaid(id)
+        {
+            console.log(id)
+        },
+
         async getDailyCollection() {
-            let res = await axios.get("https://eduinntech.com/shop/daily-collection");
+            let res = await axios.get("/daily-collection");
             this.dailyCollection = res.data.collection;
         },          
         
         async getDailyDuePayment() {
-            let res = await axios.get("https://eduinntech.com/shop/daily-due-payment");
+            let res = await axios.get("/daily-due-payment");
             this.dailyDuePayment = res.data.duePayment;
         },          
         
         async getExpense() {
-            let res = await axios.get("https://eduinntech.com/shop/daily-expense");
+            let res = await axios.get("/daily-expense");
             this.expense = res.data.expenses;
         },         
         
         async getCopySale() {
-            let res = await axios.get("https://eduinntech.com/shop/copy-sales-data");
+            let res = await axios.get("/copy-sales-data");
             this.copySale = res.data.copySale;
         },        
         
         async getProductSale() {
-            let res = await axios.get("https://eduinntech.com/shop/product-sales-data");
+            let res = await axios.get("/product-sales-data");
             this.productSale = res.data.productSale;
         },
         
         async getPrintSale() {
-            let res = await axios.get("https://eduinntech.com/shop/print-sales-data");
+            let res = await axios.get("/print-sales-data");
             this.printSale = res.data.printSale;
         },
         
