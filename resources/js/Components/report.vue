@@ -98,9 +98,10 @@
                     <td>{{ post.date}}</td>
                     <td>{{ post.customerName }}</td>
                     <td>{{ post.referenceItem}}</td>
-                    <td>{{ post.amount}}</td>
+                    <td>{{ post.amount}} {{ post.balance}}</td>
                     <td>
-                        <button @click="duePaid(post.id)" class="btn btn-sm btn-primary"> Paid</button>
+
+                        <button @click="dueCollection(post.id)" class="btn btn-sm btn-primary"> Paid</button>
                     </td>
                 </tr>
             </tbody>
@@ -115,6 +116,7 @@
                     <th>Customer Name</th>
                     <th>Reference Item</th>
                     <th>Tk. Amount</th>
+                    <th>Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,6 +125,7 @@
                     <td>{{ post.customerName }}</td>
                     <td>{{ post.referenceItem}}</td>
                     <td>{{ post.amount}}</td>
+                    <td>{{ post.collectionType}}</td>
                 </tr>
             </tbody>
         </table>
@@ -133,6 +136,8 @@
 <script >
 
 import axios from 'axios'
+import store from '../store/index';
+import router from '../routes/index';
 
 export default {
 
@@ -145,6 +150,11 @@ export default {
             expense: [], // Initial state
             dailyDuePayment: [], // Initial state
             dailyCollection: [], // Initial state
+            dueKey:{
+                dueItem:''
+            } 
+          
+           
         };
     },
     mounted() {
@@ -157,9 +167,21 @@ export default {
     },
     methods: {
 
-        duePaid(id)
+        dueCollection(id)
         {
-            console.log(id)
+
+            this.dueKey.dueItem = id
+            axios.post('/get-due-data',this.dueKey)
+                .then(function (response) {
+                    if(response.data.status =='SUCCESS')
+                        {
+                            store.commit('loadSelectedDue', response.data.duePayment);
+                            router.push('Due-collection')
+                        }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         },
 
         async getDailyCollection() {

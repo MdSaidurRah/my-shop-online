@@ -10,6 +10,7 @@ import PrintForm from '../Components/PrintForm.vue'
 import CopyForm from '../Components/CopyForm.vue'
 import DuePayment from '../Components/DuePaymentForm.vue'
 import Collection from '../Components/CollectionForm.vue'
+import DueCollection from '../Components/DueCollectionForm.vue'
 import Expenses from '../Components/ExpenseForm.vue'
 
 
@@ -39,7 +40,7 @@ const routes = [
         component: DuePayment },    
     { path: '/collection', 
         name:'Collection',
-        component: Collection },    
+        component: Collection },     
     { path: '/expenses', 
         name:'Expenses',
         component: Expenses },        
@@ -48,7 +49,10 @@ const routes = [
         component: Summery },        
     { path: '/report', 
         name:'Report',
-        component: Report }    
+        component: Report },    
+    { path: '/due-collection', 
+            name:'Due-collection',
+            component: DueCollection },    
 ]
 
 

@@ -20,7 +20,6 @@ export default {
     name: 'Payment Action',
      mounted()
     {
-        this.$store.dispatch('fetchAppData');     
         this.$store.dispatch('dataTable');     
     } 
 }

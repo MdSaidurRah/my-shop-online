@@ -11,6 +11,6 @@ class DuePayment extends Model
 
     protected $table = 'due_payments';
     public $timestamps = false;
-    protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount','date'];
+    protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount','date','balance'];
 
 }

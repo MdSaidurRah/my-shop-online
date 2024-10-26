@@ -17,6 +17,138 @@ use Illuminate\Http\Request;
 class CalculationController extends Controller
 {
 
+    public function dueSubmission(Request $request)
+    { 
+
+        $dues = DuePayment::where('id',$request->id)->select('*')->get();
+        $currentDue = $dues[0]->amount;
+        $paymentAmount = $request->amount;
+
+        $date = Carbon::now()->format('Y-m-d');
+
+       if( $currentDue == $paymentAmount  )
+       {
+            $payment = Collections::create([
+                'customerName' =>  $dues[0]->customerName,
+                'referenceItem' =>  $dues[0]->referenceItem,
+                'amount' => $dues[0]->amount,
+                'date' =>  $date,
+                'collectionType'=>'Due Payment'
+            ]);
+
+            DuePayment::where('id', $request->id)
+            ->update(['amount'=>0]);
+            
+            return response([
+                'status' => 'SUCCESS',
+                'message' =>'Deus payment has successfully and fully paid',
+                'code' => 200
+            ]);
+
+       }else if($currentDue > $paymentAmount )
+       {
+            $amount = $currentDue - $paymentAmount;
+            DuePayment::where('id', $request->id)
+            ->update(['amount'=>$amount ]);
+
+            $payment = Collections::create([
+                'customerName' =>  $dues[0]->customerName,
+                'referenceItem' =>  $dues[0]->referenceItem,
+                'amount' => $paymentAmount ,
+                'date' =>  $date,
+                'collectionType'=>'Due Payment'
+            ]);
+
+            return response([
+                'status' => 'SUCCESS',
+                'message' => 'Deus payment has partialy paid',
+                'code' => 200
+            ]);
+
+       }
+       else if($currentDue < $paymentAmount )
+       {
+            $amount = $paymentAmount-$currentDue;
+            DuePayment::where('id', $request->id)
+            ->update([
+                'amount'=>$amount,
+                'balance'=>'Advance'
+            ]);
+
+            $payment = Collections::create([
+                'customerName' =>  $dues[0]->customerName,
+                'referenceItem' =>  $dues[0]->referenceItem,
+                'amount' => $paymentAmount,
+                'date' =>  $date,
+                'collectionType'=>'Due Payment'
+            ]);
+
+            return response([
+                'status' => 'SUCCESS',
+                'message' => 'Deus payment has advance paid',
+                'code' => 200
+            ]);
+
+       }
+    }
+
+
+    public function getDueData(Request $request)
+    { 
+        $duePayment  =  DuePayment::where('id',$request->dueItem)->get();
+        return response([
+            'status' => 'SUCCESS',
+            'duePayment' => $duePayment,
+            'code' => 200
+        ]);
+    }
+
+
+
+    public function datedBusinessSummery(Request $request)
+    {
+        $date =$request->date;
+        
+        $productSale  =  ProductSale::where('date',$date)->sum('saleAmount');
+        $copySale  =  CopySale::where('date',$date)->sum('saleAmount');
+        $printSale  =  PrintSale::where('date',$date)->sum('saleAmount');
+
+        $duePayment  =  DuePayment::where('date',$date)->where('balance','DUE')->sum('amount');
+        $expense  =  Expenses::where('date',$date)->sum('expenseAmount');
+        $collections  =  Collections::where('date',$date)->sum('amount');
+
+        $totalIncome = $productSale + $copySale + $printSale + $collections;
+        $totalExpense = $duePayment + $expense;
+        $finalStatus = $totalIncome - $totalExpense;
+
+        $businessStatus = '';
+
+        if($totalIncome>$totalExpense)
+        {
+            $businessStatus = "Income";
+        }else
+        {
+            $businessStatus = "Loss";
+        }
+        
+      
+        return response([
+            'status' => 'SUCCESS',
+            'productSale' => $productSale,
+            'copySale' => $copySale,
+            'printSale' => $printSale,
+            'duePayment' => $duePayment,
+            'expense' => $expense,
+            'collections' => $collections,
+            'totalIncome' => $totalIncome,
+            'totalExpense' => $totalExpense,
+            'finalStatus' => $finalStatus,
+            'businessStatus' => $businessStatus,
+            'code' => 200
+        ]);
+    }     
+    
+    
     public function dailyBusinessSummery()
     {
         $date = Carbon::now()->format('Y-m-d');
@@ -77,7 +209,7 @@ class CalculationController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d');
         
-        $duePayment  = DuePayment::select('*')->orderBy('id','DESC')->get();
+        $duePayment  = DuePayment::select('*')->where('amount', '>', 0)->orderBy('id','DESC')->get();
       
         return response([
             'status' => 'SUCCESS',

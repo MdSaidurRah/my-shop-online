@@ -1,8 +1,20 @@
 <template>
     
     <div class="content">
-        <h4> Daily Business Summery </h4>
+        <h4> Business Summery </h4>
         <hr/>
+
+
+        <div class="row">
+            <div class="col-12 col-md-4 col-xl-4 col-xl-4">
+                 <input  @change="showResult" v-model="report.date" type="date" class="form-control">
+            </div>
+        </div>
+
+        <br/>
+
+
+       
 
 
         <div class="row">
@@ -120,14 +132,38 @@ export default {
             totalExpense: '', // Initial state
             finalStatus: '', // Initial state
             businessStatus: '', // Initial state
+            report:{
+                date:''
+            } 
+           
+         
+              
         };
     },
     mounted() {
         this.getSummery();
     },
     methods: {
+
+        async showResult()
+        {
+            let res = await axios.post("/dated-business-summery", this.report);
+            this.productSale = res.data.productSale;
+            this.printSale = res.data.printSale;
+            this.copySale = res.data.copySale;
+            this.expense = res.data.expense;
+            this.dailyDuePayment = res.data.duePayment;
+            this.dailyCollection = res.data.collections;
+            this.totalIncome = res.data.totalIncome;
+            this.totalExpense = res.data.totalExpense;
+            this.finalStatus = res.data.finalStatus;
+            this.businessStatus = res.data.businessStatus;
+        },
+
+
+
         async getSummery() {
-            let res = await axios.get("https://eduinntech.com/shop/daily-business-summery");
+            let res = await axios.get("/daily-business-summery");
             this.productSale = res.data.productSale;
             this.printSale = res.data.printSale;
             this.copySale = res.data.copySale;

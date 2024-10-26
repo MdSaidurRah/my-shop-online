@@ -10,9 +10,14 @@ export default createStore({
     'collectionTable':[],
     'expenseTable':[],
     'dueItemId':'',
+    'selectedDue':[]
   },
 
   mutations: {
+  
+    loadSelectedDue: (state, data) => {
+      state.selectedDue = data;
+    },       
     loadProductTable: (state, data) => {
       state.productTable = data;
     },        
@@ -39,6 +44,10 @@ export default createStore({
 
   getters:
   {
+  
+    selectedDue: (state, data) => {
+      return state.selectedDue[0] ;
+    },    
     dueItem: (state, data) => {
       return state.dueItemId ;
     },    

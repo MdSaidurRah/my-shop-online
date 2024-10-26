@@ -11,6 +11,6 @@ class Collections extends Model
 
     protected $table = 'collections';
     public $timestamps = false;
-    protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount','date' ];
+    protected $fillable = ['shopId', 'customerName', 'referenceItem', 'amount','date','collectionType' ];
 
 }
