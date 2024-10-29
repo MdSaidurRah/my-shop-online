@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../Components/Home.vue'
 import Summery from '../Components/summery.vue'
 import Report from '../Components/report.vue'
+import MobileBanking from '../Components/MobileBanking.vue'
 import Shop from '../Components/shop.vue'
 import ProductForm from '../Components/ProductForm.vue'
 import PrintForm from '../Components/PrintForm.vue'
@@ -12,6 +13,10 @@ import DuePayment from '../Components/DuePaymentForm.vue'
 import Collection from '../Components/CollectionForm.vue'
 import DueCollection from '../Components/DueCollectionForm.vue'
 import Expenses from '../Components/ExpenseForm.vue'
+import BKash from '../Components/mobile-banking/BkashForm.vue'
+import Nogod from '../Components/mobile-banking/NogodForm.vue'
+import Rocket from '../Components/mobile-banking/RocketForm.vue'
+
 
 
 
@@ -25,7 +30,10 @@ const routes = [
         component: Home },        
     { path: '/shop', 
         name:'Shop',
-        component: Shop },    
+        component: Shop },       
+    { path: '/mobile-banking', 
+        name:'MobileBanking',
+        component: MobileBanking },    
     { path: '/product-form', 
         name:'ProductForm',
         component: ProductForm },    
@@ -34,7 +42,16 @@ const routes = [
         component: PrintForm },    
     { path: '/copy-form', 
         name:'CopyForm',
-        component: CopyForm },    
+        component: CopyForm },  
+    { path: '/bkash-form', 
+        name:'BkashForm',
+        component: BKash },  
+    { path: '/nogod-form', 
+        name:'NogodForm',
+        component: Nogod },  
+    { path: '/rocket-form', 
+        name:'RocketForm',
+        component: Rocket },  
     { path: '/due-payment', 
         name:'DuePayment',
         component: DuePayment },    
