@@ -14,11 +14,8 @@ import DuePayment from '../Components/DuePaymentForm.vue'
 import Collection from '../Components/CollectionForm.vue'
 import DueCollection from '../Components/DueCollectionForm.vue'
 import Expenses from '../Components/ExpenseForm.vue'
-import BKash from '../Components/mobile-banking/Bkash.vue'
-import BKashCashIn from '../Components/mobile-banking/cash-in-bkash.vue'
-import BKashCashOut from '../Components/mobile-banking/cash-out-bkash.vue'
-import Nogod from '../Components/mobile-banking/NogodForm.vue'
-import Rocket from '../Components/mobile-banking/RocketForm.vue'
+
+
 
 
 
@@ -48,16 +45,6 @@ const routes = [
     { path: '/mobile-banking',         name:'Mobile-banking',        component: MobileBanking },        
     { path: '/make-trasaction',         name:'TransactionForm',        component: TransactionForm },        
     
-    
-    { path: '/bkash',         name:'Bkash',        component: BKash },      
-    { path: '/cash-in-bkash',    name:'BKashCashIn',    component: BKashCashIn },  
-    { path: '/cash-out-bkash',    name:'BKashCashOut',    component: BKashCashOut },  
-
-
-    { path: '/nogod-form',     name:'NogodForm',     component: Nogod },  
-    { path: '/rocket-form',    name:'RocketForm',    component: Rocket },  
-
-
 
     { path: '/due-payment', 
         name:'DuePayment',
