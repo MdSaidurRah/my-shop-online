@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Expenses;
+use App\Models\Collections;
 use App\Models\MobileBanking;
 use App\Models\MobileBankingBalance;
 use Carbon\Carbon;
@@ -36,18 +37,37 @@ class TransactionController extends Controller
                 $bkashBalance =  MobileBankingBalance::where('providerNmae','BKASH')->select('onlineAmount')->first();
                 $newBalance  = $bkashBalance->onlineAmount + $request->amount;
                 MobileBankingBalance::where('providerNmae','BKASH')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                
+                 $addExpenses = Expenses::create([
+                    'expenseAmount' => $request->amount,
+                    'date' =>  $date,
+                    'expenseHead'=>'BKash Cash Out'
+                ]);
 
             }elseif($request->provider =='NOGOD')
             {
                 $nogodBalance =  MobileBankingBalance::where('providerNmae','NOGOD')->select('onlineAmount')->first();
                 $newBalance  = $nogodBalance->onlineAmount + $request->amount;
                 MobileBankingBalance::where('providerNmae','NOGOD')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                $addExpenses = Expenses::create([
+                    'expenseAmount' => $request->amount,
+                    'date' =>  $date,
+                    'expenseHead'=>'Nogod Cash Out'
+                ]);
 
             }else
             {
                 $rocketBalance =  MobileBankingBalance::where('providerNmae','ROCKET')->select('onlineAmount')->first();
                 $newBalance  = $rocketBalance->onlineAmount + $request->amount;
                 MobileBankingBalance::where('providerNmae','ROCKET')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                $addExpenses = Expenses::create([
+                     'expenseAmount' => $request->amount,
+                    'date' =>  $date,
+                    'expenseHead'=>'Rocket Cash Out'
+                ]);
 
             }
 
@@ -77,18 +97,40 @@ class TransactionController extends Controller
                 $bkashBalance =  MobileBankingBalance::where('providerNmae','BKASH')->select('onlineAmount')->first();
                 $newBalance  = $bkashBalance->onlineAmount - $request->amount;
                 MobileBankingBalance::where('providerNmae','BKASH')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                
+                $payment = Collections::create([
+                    'customerName' =>  "BKash",
+                    'amount' => $request->amount,
+                    'date' =>  $date,
+                    'collectionType'=>'Customer Cash In'
+                ]);
 
             }elseif($request->provider =='NOGOD')
             {
                 $nogodBalance =  MobileBankingBalance::where('providerNmae','NOGOD')->select('onlineAmount')->first();
                 $newBalance  = $nogodBalance->onlineAmount - $request->amount;
                 MobileBankingBalance::where('providerNmae','NOGOD')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                $payment = Collections::create([
+                    'customerName' =>  "Nogod",
+                    'amount' => $request->amount,
+                    'date' =>  $date,
+                    'collectionType'=>'Customer Cash In'
+                ]);
 
             }else
             {
                 $rocketBalance =  MobileBankingBalance::where('providerNmae','ROCKET')->select('onlineAmount')->first();
                 $newBalance  = $rocketBalance->onlineAmount - $request->amount;
                 MobileBankingBalance::where('providerNmae','ROCKET')->update([ 'onlineAmount' =>  $newBalance]);
+                
+                 $payment = Collections::create([
+                    'customerName' =>  "Rocket",
+                    'amount' => $request->amount,
+                    'date' =>  $date,
+                    'collectionType'=>'Customer Cash In'
+                ]);
 
             }
 
