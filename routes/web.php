@@ -5,6 +5,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CalculationController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\TransactionController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::post('/save-transaction',[TransactionController::class,'saveTransaction']);
+Route::get('/get-balance',[TransactionController::class,'getBalance']);
 
 
 

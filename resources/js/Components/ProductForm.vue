@@ -35,7 +35,7 @@
 
 import axios from 'axios'
 import store from '../store/index';
-import router from '../routes/index';
+import router from '../routes/routes';
 
 export default {
 

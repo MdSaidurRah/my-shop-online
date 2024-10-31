@@ -8,8 +8,10 @@ import App from './Master-layout.vue'
 
 import store from "././store/index";
 
-import router from './routes/index' 
+import router from './routes/routes' 
 import 'primeicons/primeicons.css'
+
+
 
 
 createApp(App)
