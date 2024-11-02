@@ -42,7 +42,7 @@ class TransactionController extends Controller
                  $addExpenses = Expenses::create([
                     'expenseAmount' => $request->amount,
                     'date' =>  $date,
-                    'expenseHead'=>'BKash Cash Out'
+                    'expenseHead'=>'BKash Customer Cash Out'
                 ]);
 
             }elseif($request->provider =='NOGOD')
@@ -54,7 +54,7 @@ class TransactionController extends Controller
                 $addExpenses = Expenses::create([
                     'expenseAmount' => $request->amount,
                     'date' =>  $date,
-                    'expenseHead'=>'Nogod Cash Out'
+                    'expenseHead'=>'Nogod Customer Cash Out'
                 ]);
 
             }else
@@ -66,7 +66,7 @@ class TransactionController extends Controller
                 $addExpenses = Expenses::create([
                      'expenseAmount' => $request->amount,
                     'date' =>  $date,
-                    'expenseHead'=>'Rocket Cash Out'
+                    'expenseHead'=>'Rocket Customer Cash Out'
                 ]);
 
             }

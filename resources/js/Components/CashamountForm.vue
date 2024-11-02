@@ -1,24 +1,18 @@
 
 
-
 <template>
 
 
     <div class="content">
 
-        <h3>Due </h3>
+        <h3>Cash Amount</h3>
         <hr/>
-        <form class="form-inline" @submit.prevent="addProductSale">
+        <form class="form-inline" @submit.prevent="saveCaseAmount">
             <div class="form-group">
-                <label for="exampleInputEmail1">Customer Name</label>
-                <input type="text" class="form-control" v-model="form.customerName" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <label for="exampleInputEmail1">Cast Type</label>
+                <input type="text" class="form-control" v-model="form.cashType" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
             <br/>   
-            <div class="form-group">
-                <label for="exampleInputEmail1">Product Reference</label>
-                <input type="text" class="form-control" v-model="form.referenceItem" id="exampleInputEmail1" aria-describedby="emailHelp" >
-            </div>
-            <br/>
             <div class="form-group">
                 <label for="exampleInputPassword1">Amount</label>
                 <input type="number" class="form-control"  v-model="form.amount"  id="exampleInputPassword1">
@@ -55,14 +49,14 @@ export default {
 
     methods: {
 
-        async addProductSale()
+        async saveCaseAmount()
         {
-            await axios.post('/save-due-payment',this.form)
+            await axios.post('/save-cash-amount',this.form)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                         {
-                            alert("Due Amount Save Successfully")
-                            store.commit('loadDueTable',response.data.dueAmount)
+                            alert("Cash Save Successfully")
+                            store.commit('loadCashAmountTable',response.data.cash)
                             router.push('Shop')
                         }
                 })

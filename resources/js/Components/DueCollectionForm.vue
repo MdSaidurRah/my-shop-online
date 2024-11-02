@@ -5,7 +5,7 @@
 
     <div class="content">
 
-        <h3>Collections Data</h3>
+        <h3>Due Transaction</h3>
         <hr/>
         <form class="form-inline" @submit.prevent="duePaymentSubmit">
             <div class="form-group">
@@ -35,6 +35,7 @@
 
 import axios from 'axios'
 import store from '../store/index';
+import router from '../routes/routes';
 
 export default {
 
@@ -60,6 +61,7 @@ export default {
                     if(response.data.status =='SUCCESS')
                     {
                         alert(response.data.message)
+                        router.push('Report')
                     }
                 })
                 .catch(function (error) {

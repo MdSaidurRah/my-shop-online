@@ -9,6 +9,7 @@ use App\Models\DuePayment;
 use App\Models\Expenses;
 use App\Models\PrintSale;
 use App\Models\ProductSale;
+use App\Models\CashAmount;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -87,6 +88,22 @@ class ShopController extends Controller
         return response([
             'status' => 'SUCCESS',
             'collection' => $collection,
+            'code' => 200
+        ]);
+
+    }      
+    
+    
+    public function addCashAmount(Request $request)
+    {
+        $date = Carbon::now()->format('Y-m-d');
+        $request->request->add(['date' => $date]);
+        $addCash = CashAmount::create($request->all());
+        $cash = CashAmount::select('amount')->where('date',$date)->get();
+
+        return response([
+            'status' => 'SUCCESS',
+            'cash' => $cash,
             'code' => 200
         ]);
 

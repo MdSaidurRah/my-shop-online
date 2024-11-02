@@ -12,12 +12,9 @@ import PrintForm from '../Components/PrintForm.vue'
 import CopyForm from '../Components/CopyForm.vue'
 import DuePayment from '../Components/DuePaymentForm.vue'
 import Collection from '../Components/CollectionForm.vue'
+import Cashamount from '../Components/CashamountForm.vue'
 import DueCollection from '../Components/DueCollectionForm.vue'
 import Expenses from '../Components/ExpenseForm.vue'
-
-
-
-
 
 
 
@@ -49,9 +46,16 @@ const routes = [
     { path: '/due-payment', 
         name:'DuePayment',
         component: DuePayment },    
+
+
     { path: '/collection', 
         name:'Collection',
-        component: Collection },     
+        component: Collection },         
+        
+    { path: '/cash-amount', 
+        name:'/CashAmount',
+        component: Cashamount },     
+
     { path: '/expenses', 
         name:'Expenses',
         component: Expenses },        

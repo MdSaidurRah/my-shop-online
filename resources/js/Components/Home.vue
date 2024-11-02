@@ -8,13 +8,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card" >
-                    <div class="card-body">
-                        <router-link to="/mobile-banking" style="margin-right:5px" class="btn btn-sm btn-success mb-2">Mobile Banking</router-link>  
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </template>
@@ -25,10 +19,7 @@ import store from '../store/index';
 
 export default {
     name: 'Payment Action',
-     mounted()
-    {
-        this.$store.dispatch('dataTable');     
-    } 
+    
 }
 
 </script>

@@ -73,6 +73,18 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4><i class="fas fa-tasks item-icon"></i> Cash </h4>
+                        <span v-for="(pd, key) in cashAmountTable" :key="pd.id">
+                            <span class="data-value">{{ cashAmountTable[key]['amount']}}</span>+
+                        </span>
+                        <router-link to="/cash-amount" class="btn btn-warning mb-2"><i class="fas fa-plus"></i> <i class="fas fa-tasks"></i></router-link> 
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -93,25 +105,33 @@ export default {
             'dueTable':[],
             'collectionTable':[],
             'expenseTable':[],
+            'cashAmountTable':[],
         }
     },
  
     mounted()
     {   
-        this.productTable = store.getters.productTables
-        this.copyTable = store.getters.copyTables
-        this.printTable = store.getters.printTables
-        this.dueTable = store.getters.dueTables
-        this.collectionTable = store.getters.collectionTables
-        this.expenseTable = store.getters.expenseTables
+        this.dataTable()
     },
 
 
-
+    methods: 
+    {
+         async dataTable() 
+         {
+            let res = await axios.get("/all-data-table", this.report);
+            this.productTable = res.data.productSale
+            this.copyTable = res.data.copySale
+            this.printTable = res.data.printSale
+            this.dueTable = res.data.dueAmount
+            this.collectionTable = res.data.collection
+            this.expenseTable = res.data.expenses
+            this.cashAmountTable = res.data.cashAmount
+        }
+    }
     
 
 }
-
 
 
 </script>

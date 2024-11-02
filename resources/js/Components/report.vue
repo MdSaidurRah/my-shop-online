@@ -100,8 +100,7 @@
                     <td>{{ post.referenceItem}}</td>
                     <td>{{ post.amount}} {{ post.balance}}</td>
                     <td>
-
-                        <button @click="dueCollection(post.id)" class="btn btn-sm btn-primary"> Paid</button>
+                        <button @click="dueTransaction(post.id)" class="btn payent-btn"> Due Transaction</button>
                     </td>
                 </tr>
             </tbody>
@@ -152,7 +151,9 @@ export default {
             dailyCollection: [], // Initial state
             dueKey:{
                 dueItem:''
-            } 
+            },
+            show:true 
+            
           
            
         };
@@ -167,7 +168,7 @@ export default {
     },
     methods: {
 
-        dueCollection(id)
+        dueTransaction(id)
         {
 
             this.dueKey.dueItem = id
@@ -220,5 +221,22 @@ export default {
 </script>
 
 <style>
+
+
+.payent-btn
+{
+    background: #1957cb;
+    color: white;
+    margin-right: 4px;
+    padding: 2px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+}
+
+.payent-btn:hover
+{
+    background: #174396;
+    color: white;
+}
 
 </style>
