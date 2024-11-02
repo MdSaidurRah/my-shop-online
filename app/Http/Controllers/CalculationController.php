@@ -17,8 +17,11 @@ use Illuminate\Http\Request;
 class CalculationController extends Controller
 {
 
-    public function dueSubmission(Request $request)
+    public function dueTransaction(Request $request)
     { 
+
+
+        Log::info($request);
 
         $dues = DuePayment::where('id',$request->id)->select('*')->get();
         $currentDue = $dues[0]->amount;
@@ -26,70 +29,91 @@ class CalculationController extends Controller
 
         $date = Carbon::now()->format('Y-m-d');
 
-       if( $currentDue == $paymentAmount  )
-       {
-            $payment = Collections::create([
-                'customerName' =>  $dues[0]->customerName,
-                'referenceItem' =>  $dues[0]->referenceItem,
-                'amount' => $dues[0]->amount,
-                'date' =>  $date,
-                'collectionType'=>'Due Payment'
-            ]);
-
-            DuePayment::where('id', $request->id)
-            ->update(['amount'=>0]);
-            
-            return response([
-                'status' => 'SUCCESS',
-                'message' =>'Deus payment has successfully and fully paid',
-                'code' => 200
-            ]);
-
-       }else if($currentDue > $paymentAmount )
-       {
-            $amount = $currentDue - $paymentAmount;
-            DuePayment::where('id', $request->id)
-            ->update(['amount'=>$amount ]);
-
-            $payment = Collections::create([
-                'customerName' =>  $dues[0]->customerName,
-                'referenceItem' =>  $dues[0]->referenceItem,
-                'amount' => $paymentAmount ,
-                'date' =>  $date,
-                'collectionType'=>'Due Payment'
-            ]);
-
-            return response([
-                'status' => 'SUCCESS',
-                'message' => 'Deus payment has partialy paid',
-                'code' => 200
-            ]);
-
-       }
-       else if($currentDue < $paymentAmount )
-       {
-            $amount = $paymentAmount-$currentDue;
+        if( $request->transactionType =="New Due")
+        {
+            $amount = $paymentAmount+$currentDue;
             DuePayment::where('id', $request->id)
             ->update([
                 'amount'=>$amount,
                 'balance'=>'Advance'
             ]);
 
-            $payment = Collections::create([
-                'customerName' =>  $dues[0]->customerName,
-                'referenceItem' =>  $dues[0]->referenceItem,
-                'amount' => $paymentAmount,
-                'date' =>  $date,
-                'collectionType'=>'Due Payment'
-            ]);
-
             return response([
                 'status' => 'SUCCESS',
-                'message' => 'Deus payment has advance paid',
+                'message' => 'New Dues payment has been added.',
                 'code' => 200
             ]);
 
-       }
+        }else
+        {
+            if( $currentDue == $paymentAmount)
+            {
+                    $payment = Collections::create([
+                        'customerName' =>  $dues[0]->customerName,
+                        'referenceItem' =>  $dues[0]->referenceItem,
+                        'amount' => $dues[0]->amount,
+                        'date' =>  $date,
+                        'collectionType'=>'Due Payment'
+                    ]);
+
+                    DuePayment::where('id', $request->id)
+                    ->update(['amount'=>0]);
+                    
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' =>'Dues payment has successfully and fully paid',
+                        'code' => 200
+                    ]);
+
+            }else if($currentDue > $paymentAmount )
+            {
+                    $amount = $currentDue - $paymentAmount;
+                    DuePayment::where('id', $request->id)
+                    ->update(['amount'=>$amount ]);
+
+                    $payment = Collections::create([
+                        'customerName' =>  $dues[0]->customerName,
+                        'referenceItem' =>  $dues[0]->referenceItem,
+                        'amount' => $paymentAmount ,
+                        'date' =>  $date,
+                        'collectionType'=>'Due Payment'
+                    ]);
+
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'Dues payment has partialy paid',
+                        'code' => 200
+                    ]);
+
+            }
+            else if($currentDue < $paymentAmount )
+            {
+                    $amount = $paymentAmount-$currentDue;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'Advance'
+                    ]);
+
+                    $payment = Collections::create([
+                        'customerName' =>  $dues[0]->customerName,
+                        'referenceItem' =>  $dues[0]->referenceItem,
+                        'amount' => $paymentAmount,
+                        'date' =>  $date,
+                        'collectionType'=>'Due Payment'
+                    ]);
+
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'Dues payment has advance paid',
+                        'code' => 200
+                    ]);
+
+            }
+
+        }
+
+       
     }
 
 
@@ -196,7 +220,7 @@ class CalculationController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d');
         
-        $collection  = Collections::where('date',$date)->get();
+        $collection  = Collections::where('date',$date)->where('amount','>', 0)->get();
       
         return response([
             'status' => 'SUCCESS',
@@ -222,7 +246,7 @@ class CalculationController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d');
         
-        $expenses  = Expenses::where('date',$date)->get();
+        $expenses  = Expenses::where('date',$date)->where('expenseAmount','>', 0)->get();
       
         return response([
             'status' => 'SUCCESS',

@@ -22,13 +22,13 @@ class DataController extends Controller
     {
         $date = Carbon::now()->format('Y-m-d');
         
-        $productSale  = ProductSale::select('saleAmount')->where('date',$date)->where('saleAmount','!=', 0)->get();
-        $copySales  = CopySale::select('saleAmount')->where('date',$date)->where('saleAmount','!=', 0)->get();
-        $printSales  = PrintSale::select('saleAmount')->where('date',$date)->where('saleAmount','!=', 0)->get();
-        $dueAmount  = DuePayment::select('amount')->where('date',$date)->where('amount','!=', 0)->get();
-        $collection  = Collections::select('amount')->where('date',$date)->where('amount','!=', 0)->get();
-        $expenses  = Expenses::select('expenseAmount')->where('date',$date)->where('expenseAmount','!=', 0)->get();
-        $cashAmount  = CashAmount::select('amount')->where('date',$date)->where('amount','!=', 0)->get();
+        $productSale  = ProductSale::select('saleAmount')->where('date',$date)->where('saleAmount','>', 0)->get();
+        $copySales  = CopySale::select('saleAmount')->where('date',$date)->where('saleAmount','>', 0)->get();
+        $printSales  = PrintSale::select('saleAmount')->where('date',$date)->where('saleAmount','>', 0)->get();
+        $dueAmount  = DuePayment::select('amount')->where('date',$date)->where('amount','>', 0)->get();
+        $collection  = Collections::select('amount')->where('date',$date)->where('amount','>', 0)->get();
+        $expenses  = Expenses::select('expenseAmount')->where('date',$date)->where('expenseAmount','>', 0)->get();
+        $cashAmount  = CashAmount::select('amount')->where('date',$date)->where('amount','>', 0)->get();
 
         return response([
             'status' => 'success',

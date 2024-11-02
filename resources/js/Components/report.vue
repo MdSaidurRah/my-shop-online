@@ -79,6 +79,24 @@
                 </tr>
             </tbody>
         </table>
+        
+        <h4> Cash Amount</h4>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cash Type</th>
+                    <th>Tk. Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(post, key) in cashAmount" :key="post.id">
+                    <td>{{ key+1}}</td>
+                    <td>{{ post.cashType }}</td>
+                    <td>{{ post.amount}}</td>
+                </tr>
+            </tbody>
+        </table>
         <hr/>
         <h4> Daily Due Payments </h4>
         <table class="table table-bordered table-hover">
@@ -143,6 +161,7 @@ export default {
     name: "Posts",
     data() {
         return {
+            cashAmount: [], // Initial state
             productSale: [], // Initial state
             printSale: [], // Initial state
             copySale: [], // Initial state
@@ -165,6 +184,7 @@ export default {
         this.getExpense();
         this.getDailyDuePayment();
         this.getDailyCollection();
+        this.getCashAmount();
     },
     methods: {
 
@@ -177,7 +197,7 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             store.commit('loadSelectedDue', response.data.duePayment);
-                            router.push('Due-collection')
+                            router.push('Due-Transaction')
                         }
                 })
                 .catch(function (error) {
@@ -213,6 +233,10 @@ export default {
         async getPrintSale() {
             let res = await axios.get("/print-sales-data");
             this.printSale = res.data.printSale;
+        },        
+        async getCashAmount() {
+            let res = await axios.get("/cash-amount");
+            this.cashAmount = res.data.cash;
         },
         
     },

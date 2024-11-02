@@ -61,7 +61,6 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Due Amount Save Successfully")
-                            store.commit('loadCollectionTable',response.data.collection)
                             router.push('Shop')
                         }
                 })

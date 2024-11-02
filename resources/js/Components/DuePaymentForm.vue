@@ -62,7 +62,6 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Due Amount Save Successfully")
-                            store.commit('loadDueTable',response.data.dueAmount)
                             router.push('Shop')
                         }
                 })

@@ -40,8 +40,7 @@ export default {
         return {
             'form':
             {
-                'customerName':'',
-                'referenceItem':'',
+                'cashType':'',
                 'amount':''
             }
         }
@@ -56,7 +55,6 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Cash Save Successfully")
-                            store.commit('loadCashAmountTable',response.data.cash)
                             router.push('Shop')
                         }
                 })

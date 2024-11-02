@@ -50,7 +50,6 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Product Sale Save Successfully")
-                            store.commit('loadExpenseTable',response.data.expenses)
                             router.push('Shop')
                         }
                 })

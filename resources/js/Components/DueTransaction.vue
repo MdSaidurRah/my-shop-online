@@ -10,20 +10,24 @@
         <form class="form-inline" @submit.prevent="duePaymentSubmit">
             <div class="form-group">
                 <label for="exampleInputEmail1">Customer Name </label>
-                <input type="text" class="form-control" v-model="due.customerName" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <input type="text" class="form-control" v-model="transaction.customerName" id="exampleInputEmail1" aria-describedby="emailHelp" >
             </div>
             <br/>   
             <div class="form-group">
-                <label for="exampleInputEmail1">Product Reference</label>
-                <input type="text" class="form-control" v-model="due.referenceItem" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <label for="exampleInputEmail1">Transaction Type</label>
+                <select  type="text" class="form-control" v-model="transaction.transactionType" id="exampleInputEmail1" >
+                    <option value="">Select Type</option>
+                    <option value="Payment Due">Payment Due</option>
+                    <option value="New Due">New Due</option>
+                </select>
             </div>
             <br/>
             <div class="form-group">
                 <label for="exampleInputPassword1">Amount</label>
-                <input type="number" class="form-control" v-model="due.amount"  id="exampleInputPassword1">
+                <input type="number" class="form-control" v-model="transaction.amount"  id="exampleInputPassword1">
             </div>
             <br/>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Make Transaction</button>
         </form>
     </div>
 
@@ -43,20 +47,20 @@ export default {
     data() 
     {
         return {
-            'due':'',
+            'transaction':'',
         
         }
     },
 
     mounted() {
-        this.due = store.getters.selectedDue 
+        this.transaction = store.getters.selectedDue 
     },
 
     methods:
     {
         duePaymentSubmit()
         {
-            axios.post('/due-submission',this.due)
+            axios.post('/due-transaction',this.transaction)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                     {

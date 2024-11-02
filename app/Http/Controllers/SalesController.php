@@ -9,6 +9,7 @@ use App\Models\DuePayment;
 use App\Models\Expenses;
 use App\Models\PrintSale;
 use App\Models\ProductSale;
+use App\Models\CashAmount;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -20,12 +21,24 @@ class SalesController extends Controller
     public function copySalesData()
     {
         $date = Carbon::now()->format('Y-m-d');
-        
-        $copySale  = CopySale::where('date',$date)->get();
-      
+        $copySale  = CopySale::where('date',$date)->where('saleAmount','>', 0)->get();
+
+
         return response([
             'status' => 'SUCCESS',
             'copySale' => $copySale,
+            'code' => 200
+        ]);
+    }    
+    
+    public function cashAmount()
+    {
+        $date = Carbon::now()->format('Y-m-d');
+        $cash = CashAmount::where('date',$date)->get();
+         
+        return response([
+            'status' => 'SUCCESS',
+            'cash' => $cash,
             'code' => 200
         ]);
     }
@@ -33,8 +46,7 @@ class SalesController extends Controller
     public function productSalesData()
     {
         $date = Carbon::now()->format('Y-m-d');
-        
-        $productSale  = ProductSale::where('date',$date)->get();
+        $productSale  = ProductSale::where('date',$date)->where('saleAmount','>', 0)->get();
       
         return response([
             'status' => 'SUCCESS',
@@ -46,8 +58,7 @@ class SalesController extends Controller
     public function printSalesData()
     {
         $date = Carbon::now()->format('Y-m-d');
-        
-        $printSale  = PrintSale::where('date',$date)->get();
+        $printSale  = PrintSale::where('date',$date)->where('saleAmount','>', 0)->get();
       
         return response([
             'status' => 'SUCCESS',

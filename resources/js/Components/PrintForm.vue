@@ -55,7 +55,6 @@ export default {
                     if(response.data.status =='SUCCESS')
                         {
                             alert("Product Sale Save Successfully")
-                            store.commit('loadPrintTable',response.data.printSale)
                             router.push('Shop')
                         }
                 })

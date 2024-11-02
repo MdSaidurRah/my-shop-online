@@ -17,7 +17,7 @@ Route::post('/save-transaction',[TransactionController::class,'saveTransaction']
 Route::get('/get-balance',[TransactionController::class,'getBalance']);
 
 
-
+Route::get('/cash-amount',[SalesController::class,'cashAmount']);
 Route::get('/product-sales-data',[SalesController::class,'productSalesData']);
 Route::get('/print-sales-data',[SalesController::class,'printSalesData']);
 Route::get('/copy-sales-data',[SalesController::class,'copySalesData']);
@@ -33,7 +33,7 @@ Route::get('/daily-due-payment',[CalculationController::class,'dailyDuePayment']
 Route::get('/daily-collection',[CalculationController::class,'dailyCollection']);
 
 Route::post('/get-due-data',[CalculationController::class,'getDueData']);
-Route::post('/due-submission',[CalculationController::class,'dueSubmission']);
+Route::post('/due-transaction',[CalculationController::class,'dueTransaction']);
 
 
 Route::get('/all-data-table',[DataController::class,'allDataTable']);
@@ -46,7 +46,7 @@ Route::post('/save-copy-sales',[ShopController::class,'addCopySales']);
 
 
 
-Route::post('/save-cash-amount',[ShopController::class,'addCopySales']);
+Route::post('/save-cash-amount',[ShopController::class,'addCashAmount']);
 
 
 Route::post('/save-due-payment',[ShopController::class,'addDuaPayment']);
