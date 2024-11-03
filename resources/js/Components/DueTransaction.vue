@@ -7,28 +7,37 @@
 
         <h3>Due Transaction</h3>
         <hr/>
-        <form class="form-inline" @submit.prevent="duePaymentSubmit">
+        <Form class="form-inline"  @submit="dueTransactionSubmit"  :validation-schema="schema" :initial-values="formValues" >
+
+
+            <Field  name="id" type="hidden" class="form-control" />
+
             <div class="form-group">
-                <label for="exampleInputEmail1">Customer Name </label>
-                <input type="text" class="form-control" v-model="transaction.customerName" id="exampleInputEmail1" aria-describedby="emailHelp" >
+                <label for="username">Customer Number</label>
+                <Field  name="customerName" type="text" class="form-control" />
+                <ErrorMessage name="customerName" class="error-feedback" />
+            </div>
+            <br/>   
+
+            <div class="form-group">
+                <label for="transactionType">Transaction Type </label>
+                <Field name="transactionType" as="select" class="form-control"  >
+                    <option value="" >Select Type</option>
+                    <option value="Due Payment">Due Payment</option>
+                    <option value="New Due">New Due</option>
+                </Field>
+                <ErrorMessage name="transactionType" class="error-feedback" />
             </div>
             <br/>   
             <div class="form-group">
-                <label for="exampleInputEmail1">Transaction Type</label>
-                <select  type="text" class="form-control" v-model="transaction.transactionType" id="exampleInputEmail1" >
-                    <option value="">Select Type</option>
-                    <option value="Payment Due">Payment Due</option>
-                    <option value="New Due">New Due</option>
-                </select>
+                <label for="amount">Amount</label>
+                <Field name="amount" type="number" class="form-control" />
+                <ErrorMessage name="amount" class="error-feedback" />
             </div>
-            <br/>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Amount</label>
-                <input type="number" class="form-control" v-model="transaction.amount"  id="exampleInputPassword1">
-            </div>
+           
             <br/>
             <button type="submit" class="btn btn-primary">Make Transaction</button>
-        </form>
+        </Form>
     </div>
 
 </template>
@@ -41,26 +50,42 @@ import axios from 'axios'
 import store from '../store/index';
 import router from '../routes/routes';
 
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
+
 export default {
 
     name: 'Payment Action',
+    components: {
+        Form,
+        Field,
+        ErrorMessage,
+    },
     data() 
     {
-        return {
-            'transaction':'',
-        
-        }
-    },
+        const schema = yup.object().shape({
+        customerName: yup.string().required("Customer is required!"),
+        transactionType: yup.string().required("Type is required!"),
+        amount: yup.string().required("Amount is required!"),
+        });
 
-    mounted() {
-        this.transaction = store.getters.selectedDue 
+        const  formValues= {
+                customerName:store.getters.selectedDue.customerName,
+                amount:store.getters.selectedDue.amount,
+                id:store.getters.selectedDue.id,
+            }
+
+        return {
+            formValues,
+            schema
+        }
     },
 
     methods:
     {
-        duePaymentSubmit()
+        dueTransactionSubmit(trasactionDate)
         {
-            axios.post('/due-transaction',this.transaction)
+            axios.post('/due-transaction',trasactionDate)
                 .then(function (response) {
                     if(response.data.status =='SUCCESS')
                     {
@@ -73,13 +98,10 @@ export default {
                 });
         }
     }
-
-
 }
 
 
 </script>
-
 
 <style scoped>
 

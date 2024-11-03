@@ -9,6 +9,7 @@ use App\Models\DuePayment;
 use App\Models\Expenses;
 use App\Models\PrintSale;
 use App\Models\ProductSale;
+use App\Models\CashAmount;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
@@ -19,101 +20,192 @@ class CalculationController extends Controller
 
     public function dueTransaction(Request $request)
     { 
-
-
-        Log::info($request);
-
+        
         $dues = DuePayment::where('id',$request->id)->select('*')->get();
         $currentDue = $dues[0]->amount;
-        $paymentAmount = $request->amount;
-
+        $payAmount = $request->amount;
+        $transactionType = $request->transactionType;
+        $balanceStatus = $dues[0]->balance;
         $date = Carbon::now()->format('Y-m-d');
 
-        if( $request->transactionType =="New Due")
+        if($balanceStatus == "ADVANCED")
         {
-            $amount = $paymentAmount+$currentDue;
-            DuePayment::where('id', $request->id)
-            ->update([
-                'amount'=>$amount,
-                'balance'=>'Advance'
-            ]);
 
-            return response([
-                'status' => 'SUCCESS',
-                'message' => 'New Dues payment has been added.',
-                'code' => 200
-            ]);
+            $balaceAmount =  $dues[0]->amount;
 
-        }else
-        {
-            if( $currentDue == $paymentAmount)
+            if( $request->transactionType == "New Due")
             {
-                    $payment = Collections::create([
-                        'customerName' =>  $dues[0]->customerName,
-                        'referenceItem' =>  $dues[0]->referenceItem,
-                        'amount' => $dues[0]->amount,
-                        'date' =>  $date,
-                        'collectionType'=>'Due Payment'
-                    ]);
 
-                    DuePayment::where('id', $request->id)
-                    ->update(['amount'=>0]);
-                    
-                    return response([
-                        'status' => 'SUCCESS',
-                        'message' =>'Dues payment has successfully and fully paid',
-                        'code' => 200
-                    ]);
-
-            }else if($currentDue > $paymentAmount )
-            {
-                    $amount = $currentDue - $paymentAmount;
-                    DuePayment::where('id', $request->id)
-                    ->update(['amount'=>$amount ]);
-
-                    $payment = Collections::create([
-                        'customerName' =>  $dues[0]->customerName,
-                        'referenceItem' =>  $dues[0]->referenceItem,
-                        'amount' => $paymentAmount ,
-                        'date' =>  $date,
-                        'collectionType'=>'Due Payment'
-                    ]);
-
-                    return response([
-                        'status' => 'SUCCESS',
-                        'message' => 'Dues payment has partialy paid',
-                        'code' => 200
-                    ]);
-
-            }
-            else if($currentDue < $paymentAmount )
-            {
-                    $amount = $paymentAmount-$currentDue;
+                if($payAmount>$balaceAmount)
+                {
+                    $amount = $payAmount-$balaceAmount;
                     DuePayment::where('id', $request->id)
                     ->update([
                         'amount'=>$amount,
-                        'balance'=>'Advance'
+                        'balance'=>'DUE'
+                    ]);
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }elseif($payAmount==$balaceAmount)
+                {
+                    $amount = $balaceAmount - $payAmount;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'BALANCED'
+                    ]);
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }else
+                {
+                    $amount =$balaceAmount - $payAmount;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'ADVANCED'
+                    ]);
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }
+            }
+            elseif( $request->transactionType == "Due Payment")
+            {
+                    $amount = $payAmount + $balaceAmount;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'ADVANCED'
                     ]);
 
-                    $payment = Collections::create([
-                        'customerName' =>  $dues[0]->customerName,
-                        'referenceItem' =>  $dues[0]->referenceItem,
-                        'amount' => $paymentAmount,
-                        'date' =>  $date,
-                        'collectionType'=>'Due Payment'
-                    ]);
+                    $addCollection = Collections::create
+                    (
+                        [
+                        'customerName'=>$request->customerName,
+                        'referenceItem'=>$request->id, 
+                        'amount'=>$payAmount,
+                        'date'=>$date,
+                        'collectionType'=>"Due Collection"
+                        ]
+                    );
 
                     return response([
                         'status' => 'SUCCESS',
-                        'message' => 'Dues payment has advance paid',
+                        'message' => 'New Payment adjusted as Advance amount.',
+                        'code' => 200
+                    ]);                    
+            }
+        }elseif($balanceStatus == "DUE")
+        {
+
+            $dueAmount =  $dues[0]->amount;
+
+            if( $request->transactionType == "New Due")
+            {
+                if($payAmount>$dueAmount)
+                {
+                    $amount = $payAmount + $dueAmount;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'DUE'
+                    ]);
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
                         'code' => 200
                     ]);
-
+                }
             }
+            elseif($request->transactionType == "Due Payment")
+            {
+                $dueAmount =  $dues[0]->amount;
+                if($dueAmount > $payAmount)
+                {
+                    $amount = $dueAmount - $payAmount ;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'DUE'
+                    ]);
 
+                    $addCollection = Collections::create
+                    (
+                        [
+                        'customerName'=>$request->customerName,
+                        'referenceItem'=>$request->id, 
+                        'amount'=>$payAmount,
+                        'date'=>$date,
+                        'collectionType'=>"Due Collection"
+                        ]
+                    );
+
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }elseif($dueAmount == $payAmount)
+                {
+                    $amount = $dueAmount - $payAmount ;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'BALANCED'
+                    ]);
+
+                    $addCollection = Collections::create
+                    (
+                        [
+                        'customerName'=>$request->customerName,
+                        'referenceItem'=>$request->id, 
+                        'amount'=>$payAmount,
+                        'date'=>$date,
+                        'collectionType'=>"Due Collection"
+                        ]
+                    );
+
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }else{
+                    $amount = $payAmount - $dueAmount ;
+                    DuePayment::where('id', $request->id)
+                    ->update([
+                        'amount'=>$amount,
+                        'balance'=>'ADVANCED'
+                    ]);
+
+                    $addCollection = Collections::create
+                    (
+                        [
+                        'customerName'=>$request->customerName,
+                        'referenceItem'=>$request->id, 
+                        'amount'=>$payAmount,
+                        'date'=>$date,
+                        'collectionType'=>"Due Collection"
+                        ]
+                    );
+
+                    return response([
+                        'status' => 'SUCCESS',
+                        'message' => 'New Due adjusted with previoue amount.',
+                        'code' => 200
+                    ]);
+                }     
+            }
         }
-
-       
+              
     }
 
 
@@ -140,9 +232,10 @@ class CalculationController extends Controller
         $duePayment  =  DuePayment::where('date',$date)->where('balance','DUE')->sum('amount');
         $expense  =  Expenses::where('date',$date)->sum('expenseAmount');
         $collections  =  Collections::where('date',$date)->sum('amount');
+        $cashAmount  =  CashAmount::where('date',$date)->sum('amount');
 
-        $totalIncome = $productSale + $copySale + $printSale + $collections;
-        $totalExpense = $duePayment + $expense;
+        $totalIncome = $productSale + $copySale + $printSale + $collections ;
+        $totalExpense = $expense + $duePayment;
         $finalStatus = $totalIncome - $totalExpense;
 
         $businessStatus = '';
@@ -168,6 +261,7 @@ class CalculationController extends Controller
             'totalExpense' => $totalExpense,
             'finalStatus' => $finalStatus,
             'businessStatus' => $businessStatus,
+            'cashAmount' => $cashAmount,
             'code' => 200
         ]);
     }     
@@ -185,8 +279,10 @@ class CalculationController extends Controller
         $expense  =  Expenses::where('date',$date)->sum('expenseAmount');
         $collections  =  Collections::where('date',$date)->sum('amount');
 
-        $totalIncome = $productSale + $copySale + $printSale + $collections;
-        $totalExpense = $duePayment + $expense;
+        $cashAmount  =  CashAmount::where('date',$date)->sum('amount');
+
+        $totalIncome = $productSale + $copySale + $printSale + $collections ;
+        $totalExpense = $expense + $duePayment;
         $finalStatus = $totalIncome - $totalExpense;
 
         $businessStatus = '';
@@ -212,6 +308,7 @@ class CalculationController extends Controller
             'totalExpense' => $totalExpense,
             'finalStatus' => $finalStatus,
             'businessStatus' => $businessStatus,
+            'cashAmount' => $cashAmount,
             'code' => 200
         ]);
     }      

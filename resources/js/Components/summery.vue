@@ -21,45 +21,45 @@
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <h5> Total Sales</h5>
                 <table class="table table-bordered table-hover">
-                <tr>
-                    <td >#</td>
-                    <td >Head</td>
-                    <td >Amount</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Product Sales</td>
-                    <td>{{ productSale }}</td>
-                   
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Copy Sales</td>
-                    <td>{{ copySale }}</td>
-                   
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Print Sales</td>
-                    <td>{{ printSale }}</td>
-                 
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Collection</td>
-                    <td>{{ dailyCollection }}</td>
-                   
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Total Income</td>
-                    <td>{{ totalIncome }}</td>
+                    <tr>
+                        <td >#</td>
+                        <td >Head</td>
+                        <td >Amount</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Product Sales</td>
+                        <td>{{ productSale }}</td>
+                    
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Copy Sales</td>
+                        <td>{{ copySale }}</td>
+                    
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Print Sales</td>
+                        <td>{{ printSale }}</td>
+                        <td></td>
+                    </tr>
                 
-                </tr>
-                
-            </table>
+                    <tr>
+                        <td>4</td>
+                        <td>Due Collection</td>
+                        <td>{{ dailyCollection }}</td>
+                    
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Total Income</td>
+                        <td>{{ totalIncome }}</td>
+                    
+                    </tr>
+                </table>
             </div>
+
             <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <h5> Total Expenses</h5>
                 <table class="table table-bordered table-hover">
@@ -73,37 +73,59 @@
                         <td>Expense</td>
                         <td>{{ expense }}</td>
                     </tr>
+
                     <tr>
-                        <td>2</td>
-                        <td>Due Payment</td>
+                        <td>1</td>
+                        <td>Dues </td>
                         <td>{{ dailyDuePayment }}</td>
                     </tr>
-                  
+                 
                     <tr>
-                        <td>3</td>
+                        <td>2</td>
                         <td>Total Expense</td>
                         <td>{{ totalExpense }}</td>
                     </tr>
-                    
-                </table>
-
-
+                </table>     
                 
-            </div>
-        </div>
+                <br>
 
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
                 <table class="table table-bordered">
                     <tr>
                         <td colspan="3">Final Status</td>
                         <td>{{ finalStatus }} ({{ businessStatus }})</td>
                     </tr>
                 </table>
-                
-            </div>   
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6"></div>   
+             
+            </div>
+
+            <br/>
+            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+                <h5> Today Accounts</h5>
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <td >#</td>
+                        <td >Head</td>
+                        <td >Amount</td>
+                    </tr>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Total Income</td>
+                        <td>{{ totalIncome }}</td>
+                    </tr>
+                                       
+                    <tr>
+                        <td>2</td>
+                        <td>Cash</td>
+                        <td>{{ cashAmount }}</td>
+                    </tr>
+                    
+                </table>
+            </div>
+
         </div>
+
+        
 
 
         
@@ -132,6 +154,7 @@ export default {
             totalExpense: '', // Initial state
             finalStatus: '', // Initial state
             businessStatus: '', // Initial state
+            cashAmount: '', // Initial state
             report:{
                 date:''
             } 
@@ -158,6 +181,7 @@ export default {
             this.totalExpense = res.data.totalExpense;
             this.finalStatus = res.data.finalStatus;
             this.businessStatus = res.data.businessStatus;
+            this.cashAmount = res.data.cashAmount;
         },
 
 
@@ -174,6 +198,7 @@ export default {
             this.totalExpense = res.data.totalExpense;
             this.finalStatus = res.data.finalStatus;
             this.businessStatus = res.data.businessStatus;
+            this.cashAmount = res.data.cashAmount;
         },          
         
        

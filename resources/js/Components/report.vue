@@ -2,150 +2,182 @@
     
     <div class="content">
         <h4> Product Sales </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Tk. Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in productSale" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.productName }}</td>
-                    <td>{{ post.saleQuantity }}</td>
-                    <td>{{ post.saleAmount }}</td>
-                </tr>
-            </tbody>
-        </table>
+
+
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Tk. Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in productSale" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.productName }}</td>
+                        <td>{{ post.saleQuantity }}</td>
+                        <td>{{ post.saleAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+       
         <hr/>
+
+
         <h4> Print Sales </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Tk. Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in printSale" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.productName }}</td>
-                    <td>{{ post.saleQuantity }}</td>
-                    <td>{{ post.saleAmount }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Tk. Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in printSale" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.productName }}</td>
+                        <td>{{ post.saleQuantity }}</td>
+                        <td>{{ post.saleAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        </div>
         
         <hr/>
         <h4> Copy Sales </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Product Name</th>
-                    <th>Quantity</th>
-                    <th>Tk. Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in copySale" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.productName }}</td>
-                    <td>{{ post.saleQuantity }}</td>
-                    <td>{{ post.saleAmount }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Tk. Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in copySale" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.productName }}</td>
+                        <td>{{ post.saleQuantity }}</td>
+                        <td>{{ post.saleAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <hr/>
+
+
         <h4> Daily Expense </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Expense Head</th>
-                    <th>Tk. Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in expense" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.expenseHead }}</td>
-                    <td>{{ post.expenseAmount}}</td>
-                </tr>
-            </tbody>
-        </table>
+
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Expense Head</th>
+                            <th>Tk. Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(post, key) in expense" :key="post.id">
+                            <td>{{ key+1}}</td>
+                            <td>{{ post.expenseHead }}</td>
+                            <td>{{ post.expenseAmount}}</td>
+                        </tr>
+                    </tbody>
+            </table>
+
+        </div>
+
+        <br/>
+        
         
         <h4> Cash Amount</h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Cash Type</th>
-                    <th>Tk. Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in cashAmount" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.cashType }}</td>
-                    <td>{{ post.amount}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Cash Type</th>
+                        <th>Tk. Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in cashAmount" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.cashType }}</td>
+                        <td>{{ post.amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <hr/>
+
         <h4> Daily Due Payments </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Customer Name</th>
-                    <th>Reference Item</th>
-                    <th>Tk. Amount</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in dailyDuePayment" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.date}}</td>
-                    <td>{{ post.customerName }}</td>
-                    <td>{{ post.referenceItem}}</td>
-                    <td>{{ post.amount}} {{ post.balance}}</td>
-                    <td>
-                        <button @click="dueTransaction(post.id)" class="btn payent-btn"> Due Transaction</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table> 
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Customer Name</th>
+                        <th>Reference Item</th>
+                        <th>Tk. Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in dailyDuePayment" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.date}}</td>
+                        <td>{{ post.customerName }}</td>
+                        <td>{{ post.referenceItem}}</td>
+                        <td>{{ post.amount}} {{ post.balance}}</td>
+                        <td>
+                            <button @click="dueTransaction(post.id)" class="btn payent-btn"> Due Transaction</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table> 
+        </div>
+        
         
         <hr/>
         <h4> Daily Collections </h4>
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Customer Name</th>
-                    <th>Reference Item</th>
-                    <th>Tk. Amount</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(post, key) in dailyCollection" :key="post.id">
-                    <td>{{ key+1}}</td>
-                    <td>{{ post.customerName }}</td>
-                    <td>{{ post.referenceItem}}</td>
-                    <td>{{ post.amount}}</td>
-                    <td>{{ post.collectionType}}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Customer Name</th>
+                        <th>Reference Item</th>
+                        <th>Tk. Amount</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(post, key) in dailyCollection" :key="post.id">
+                        <td>{{ key+1}}</td>
+                        <td>{{ post.customerName }}</td>
+                        <td>{{ post.referenceItem}}</td>
+                        <td>{{ post.amount}}</td>
+                        <td>{{ post.collectionType}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         
     </div>
 </template>
